@@ -1,0 +1,8 @@
+com\ats\auth\model\User.class
+com\ats\auth\repository\CandidateRepository.class
+com\ats\auth\model\Candidate.class
+com\ats\auth\repository\UserRepository.class
+com\ats\auth\security\JwtAuthenticationFilter.class
+com\ats\auth\config\SecurityConfig.class
+com\ats\auth\controller\AuthController.class
+com\recruiter\auth\AuthApplication.class

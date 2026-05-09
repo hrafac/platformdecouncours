@@ -1,0 +1,4 @@
+com\recruiter\candidate\model\Candidate.class
+com\recruiter\candidate\repository\CandidateRepository.class
+com\recruiter\candidate\controller\CandidateController.class
+com\recruiter\candidate\CandidateApplication.class

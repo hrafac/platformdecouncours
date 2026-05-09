@@ -1,0 +1,4 @@
+com\recruiter\job\model\JobOffer.class
+com\recruiter\job\JobApplication.class
+com\recruiter\job\repository\JobRepository.class
+com\recruiter\job\controller\JobController.class

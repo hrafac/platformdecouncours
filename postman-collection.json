@@ -1,0 +1,417 @@
+{
+	"info": {
+		"_postman_id": "b1a2c3d4-e5f6-7890-abcd-ef1234567890",
+		"name": "Système de Recrutement Microservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth Service",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@recruiter.com\",\n  \"password\": \"admin123\",\n  \"role\": \"ADMIN\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					}
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@recruiter.com\",\n  \"password\": \"admin123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Candidate Service",
+			"item": [
+				{
+					"name": "Create Candidate Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userId\": \"user123\",\n  \"firstName\": \"Jean\",\n  \"lastName\": \"Dupont\",\n  \"email\": \"jean.dupont@email.com\",\n  \"phone\": \"06123456789\",\n  \"skills\": \"Java, Spring Boot, PostgreSQL, React, Docker\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/candidates",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"candidates"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Candidate by ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8082/api/candidates/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"candidates",
+								"1"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Candidate by User ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8082/api/candidates/user/user123",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"candidates",
+								"user",
+								"user123"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Candidates",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8082/api/candidates",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"candidates"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Job Service",
+			"item": [
+				{
+					"name": "Create Job Offer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Développeur Java Senior\",\n  \"company\": \"TechCorp\",\n  \"description\": \"Nous recherchons un développeur Java expérimenté pour rejoindre notre équipe.\",\n  \"requiredSkills\": \"Java, Spring Boot, Microservices, PostgreSQL, Docker\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/jobs",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"jobs"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get All Jobs",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8083/api/jobs",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"jobs"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Job by ID",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8083/api/jobs/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"jobs",
+								"1"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Application Service",
+			"item": [
+				{
+					"name": "Apply for Job",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "candidateId",
+									"value": "1"
+								},
+								{
+									"key": "jobId",
+									"value": "1"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/applications/apply",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"applications",
+								"apply"
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Applications by Job",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8084/api/applications/job/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"applications",
+								"job",
+								"1"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "ATS Service",
+			"item": [
+				{
+					"name": "Calculate ATS Score",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"candidateSkills\": \"Java, Spring Boot, PostgreSQL, React, Docker\",\n  \"jobSkills\": \"Java, Spring Boot, Microservices, PostgreSQL, Docker\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8085/api/ats/score",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"ats",
+								"score"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "API Gateway Routes",
+			"item": [
+				{
+					"name": "Auth via Gateway",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@recruiter.com\",\n  \"password\": \"admin123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					}
+				},
+				{
+					"name": "Candidates via Gateway",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8080/api/candidates",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"candidates"
+							]
+						}
+					}
+				},
+				{
+					"name": "Jobs via Gateway",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8080/api/jobs",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"jobs"
+							]
+						}
+					}
+				},
+				{
+					"name": "Applications via Gateway",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "http://localhost:8080/api/applications/job/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"applications",
+								"job",
+								"1"
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Eureka Dashboard",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "http://localhost:8761",
+					"host": [
+						"localhost"
+					],
+					"port": "8761",
+					"path": []
+				}
+			}
+		}
+	]
+}

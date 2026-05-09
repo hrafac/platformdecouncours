@@ -1,0 +1,4 @@
+com\recruiter\ats\model\Application.class
+com\recruiter\ats\repository\ApplicationRepository.class
+com\recruiter\ats\AtsServiceApplication.class
+com\recruiter\ats\controller\AtsController.class
