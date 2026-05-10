@@ -46,15 +46,32 @@ public class CandidateController {
     public ResponseEntity<Candidate> updateProfile(@PathVariable Long id, @RequestBody Candidate candidateDetails) {
         return repository.findById(id)
                 .map(candidate -> {
-                    candidate.setUserId(candidateDetails.getUserId());
+                    // Mettre à jour les champs mais conserver le même ID et userId
                     candidate.setFullName(candidateDetails.getFullName());
                     candidate.setEmail(candidateDetails.getEmail());
                     candidate.setPhone(candidateDetails.getPhone());
                     candidate.setSkills(candidateDetails.getSkills());
                     candidate.setExperience(candidateDetails.getExperience());
+                    // Ne pas modifier userId pour éviter les doublons
                     return ResponseEntity.ok(repository.save(candidate));
                 })
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    // Méthode pour mettre à jour par userId (plus sûre)
+    @PutMapping("/user/{userId}")
+    public ResponseEntity<Candidate> updateProfileByUserId(@PathVariable String userId, @RequestBody Candidate candidateDetails) {
+        Candidate candidate = repository.findByUserId(userId);
+        if (candidate != null) {
+            candidate.setFullName(candidateDetails.getFullName());
+            candidate.setEmail(candidateDetails.getEmail());
+            candidate.setPhone(candidateDetails.getPhone());
+            candidate.setSkills(candidateDetails.getSkills());
+            candidate.setExperience(candidateDetails.getExperience());
+            return ResponseEntity.ok(repository.save(candidate));
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")

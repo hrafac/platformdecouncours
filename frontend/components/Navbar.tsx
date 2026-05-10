@@ -12,7 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Menu, X, User, LogOut, LayoutDashboard, Settings, Moon, Sun } from 'lucide-react';
+import { Menu, X, User, LogOut, LayoutDashboard, UserCircle, Moon, Sun } from 'lucide-react';
 import { useState } from 'react';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
@@ -103,9 +103,9 @@ export default function Navbar() {
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link href="/settings">
-                      <Settings className="mr-2 h-4 w-4" />
-                      Paramètres
+                    <Link href="/profile">
+                      <UserCircle className="mr-2 h-4 w-4" />
+                      Profil
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />

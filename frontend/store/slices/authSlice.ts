@@ -108,7 +108,7 @@ export const checkAuth = createAsyncThunk('auth/checkAuth', async (_, { rejectWi
     const user: User = {
       id: userId || 'temp-id',
       email: candidateData?.email || 'temp-email',
-      name: candidateData?.fullName || 'temp-name',
+      name: candidateData?.fullName || 'Utilisateur',
       role: userRole as UserRole,
       createdAt: new Date().toISOString(),
     };
@@ -144,7 +144,7 @@ const authSlice = createSlice({
         state.user = {
           id: action.payload.userId || 'temp-id',
           email: candidateData?.email || 'temp-email',
-          name: candidateData?.fullName || 'temp-name',
+          name: candidateData?.fullName || 'Utilisateur',
           role: action.payload.role as UserRole,
           createdAt: new Date().toISOString(),
         };
@@ -171,7 +171,7 @@ const authSlice = createSlice({
         state.user = {
           id: action.payload.userId,
           email: candidateData?.email || 'temp-email',
-          name: candidateData?.fullName || 'temp-name',
+          name: candidateData?.fullName || 'Utilisateur',
           role: action.payload.role as UserRole,
           createdAt: new Date().toISOString(),
         };
