@@ -87,7 +87,9 @@ export default function AdminDashboard() {
     type: 'FULL_TIME' as const,
     competitionDate: '',
     competitionTime: '',
-    competitionStatus: 'NOT_STARTED' as const
+    competitionStatus: 'NOT_STARTED' as const,
+    papierRequis: false,
+    descriptionPapier: ''
   });
 
   useEffect(() => {
@@ -306,10 +308,15 @@ export default function AdminDashboard() {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
+    const target = e.target;
+    const { name, value, type } = target;
+    let newValue: string | boolean = value;
+    if (type === 'checkbox' && target instanceof HTMLInputElement) {
+      newValue = target.checked;
+    }
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [name]: newValue
     }));
   };
 
@@ -335,7 +342,9 @@ export default function AdminDashboard() {
         type: 'FULL_TIME',
         competitionDate: '',
         competitionTime: '',
-        competitionStatus: 'NOT_STARTED'
+        competitionStatus: 'NOT_STARTED',
+        papierRequis: false,
+        descriptionPapier: ''
       });
     } catch (error) {
       console.error('Error creating contest:', error);
@@ -752,144 +761,175 @@ export default function AdminDashboard() {
         title="Créer un nouveau concours"
         description="Remplissez les informations pour créer un nouveau concours"
       >
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div style={{ maxHeight: '70vh', overflowY: 'auto' }}>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* ...existing code for the form... */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="title">Titre du concours</Label>
+                <Input
+                  id="title"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="company">Entreprise</Label>
+                <Input
+                  id="company"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            </div>
+
             <div className="space-y-2">
-              <Label htmlFor="title">Titre du concours</Label>
-              <Input
-                id="title"
-                name="title"
-                value={formData.title}
+              <Label htmlFor="description">Description</Label>
+              <textarea
+                id="description"
+                name="description"
+                value={formData.description}
                 onChange={handleInputChange}
+                className="w-full min-h-[80px] px-3 py-2 border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
                 required
               />
             </div>
+
             <div className="space-y-2">
-              <Label htmlFor="company">Entreprise</Label>
-              <Input
-                id="company"
-                name="company"
-                value={formData.company}
+              <Label htmlFor="requirements">Prérequis</Label>
+              <textarea
+                id="requirements"
+                name="requirements"
+                value={formData.requirements}
                 onChange={handleInputChange}
+                className="w-full min-h-[80px] px-3 py-2 border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
                 required
               />
             </div>
-          </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
-            <textarea
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleInputChange}
-              className="w-full min-h-[80px] px-3 py-2 border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
-              required
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="requirements">Prérequis</Label>
-            <textarea
-              id="requirements"
-              name="requirements"
-              value={formData.requirements}
-              onChange={handleInputChange}
-              className="w-full min-h-[80px] px-3 py-2 border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
-              required
-            />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="salary">Salaire</Label>
-              <Input
-                id="salary"
-                name="salary"
-                type="number"
-                step="0.01"
-                value={formData.salary}
-                onChange={handleInputChange}
-                required
-              />
+            {/* Papier Requis Checkbox */}
+            <div className="flex items-center gap-4">
+              <Label htmlFor="papierRequis" className="flex items-center gap-2 mb-0">
+                <Input
+                  id="papierRequis"
+                  name="papierRequis"
+                  type="checkbox"
+                  checked={formData.papierRequis}
+                  onChange={handleInputChange}
+                  className="w-4 h-4 mr-2"
+                />
+                Papier requis ?
+              </Label>
+              {formData.papierRequis && (
+                <div className="flex-1">
+                  <Label htmlFor="descriptionPapier" className="mb-0">Description du papier requis</Label>
+                  <Input
+                    id="descriptionPapier"
+                    name="descriptionPapier"
+                    value={formData.descriptionPapier}
+                    onChange={handleInputChange}
+                    required={formData.papierRequis}
+                    className="ml-2"
+                  />
+                </div>
+              )}
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="location">Lieu</Label>
-              <Input
-                id="location"
-                name="location"
-                value={formData.location}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="salary">Salaire</Label>
+                <Input
+                  id="salary"
+                  name="salary"
+                  type="number"
+                  step="0.01"
+                  value={formData.salary}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="location">Lieu</Label>
+                <Input
+                  id="location"
+                  name="location"
+                  value={formData.location}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="type">Type</Label>
+                <select
+                  id="type"
+                  name="type"
+                  value={formData.type}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
+                >
+                  <option value="FULL_TIME">Temps plein</option>
+                  <option value="PART_TIME">Temps partiel</option>
+                  <option value="CONTRACT">Contrat</option>
+                  <option value="INTERNSHIP">Stage</option>
+                </select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="competitionDate">Date du concours</Label>
+                <Input
+                  id="competitionDate"
+                  name="competitionDate"
+                  type="date"
+                  value={formData.competitionDate}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="competitionTime">Heure du concours</Label>
+                <Input
+                  id="competitionTime"
+                  name="competitionTime"
+                  type="time"
+                  value={formData.competitionTime}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
+            </div>
+
             <div className="space-y-2">
-              <Label htmlFor="type">Type</Label>
+              <Label htmlFor="competitionStatus">Statut du concours</Label>
               <select
-                id="type"
-                name="type"
-                value={formData.type}
+                id="competitionStatus"
+                name="competitionStatus"
+                value={formData.competitionStatus}
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
               >
-                <option value="FULL_TIME">Temps plein</option>
-                <option value="PART_TIME">Temps partiel</option>
-                <option value="CONTRACT">Contrat</option>
-                <option value="INTERNSHIP">Stage</option>
+                <option value="NOT_STARTED">À venir</option>
+                <option value="OPEN">Ouvert</option>
+                <option value="CLOSED">Fermé</option>
+                <option value="UPCOMING">Bientôt disponible</option>
               </select>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="competitionDate">Date du concours</Label>
-              <Input
-                id="competitionDate"
-                name="competitionDate"
-                type="date"
-                value={formData.competitionDate}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="competitionTime">Heure du concours</Label>
-              <Input
-                id="competitionTime"
-                name="competitionTime"
-                type="time"
-                value={formData.competitionTime}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
-          </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="competitionStatus">Statut du concours</Label>
-            <select
-              id="competitionStatus"
-              name="competitionStatus"
-              value={formData.competitionStatus}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
-            >
-              <option value="NOT_STARTED">À venir</option>
-              <option value="OPEN">Ouvert</option>
-              <option value="CLOSED">Fermé</option>
-              <option value="UPCOMING">Bientôt disponible</option>
-            </select>
-          </div>
-
-          <div className="flex justify-end gap-3 pt-4">
-            <Button type="button" variant="outline" onClick={() => setCreateModalOpen(false)}>
-              Annuler
-            </Button>
-            <Button type="submit">
-              Créer le concours
-            </Button>
-          </div>
-        </form>
+            <div className="flex justify-end gap-3 pt-4">
+              <Button type="button" variant="outline" onClick={() => setCreateModalOpen(false)}>
+                Annuler
+              </Button>
+              <Button type="submit">
+                Créer le concours
+              </Button>
+            </div>
+          </form>
+        </div>
       </Modal>
 
       {/* Edit User Modal */}
@@ -957,7 +997,7 @@ export default function AdminDashboard() {
         description="Informations complètes du concours"
       >
         {contestToView && (
-          <div className="space-y-4">
+          <div className="space-y-4 max-h-[70vh] overflow-y-auto pr-2">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-muted-foreground">Titre</Label>
@@ -969,24 +1009,26 @@ export default function AdminDashboard() {
               </div>
             </div>
 
-            <div className="space-y-2">
-              <Label className="text-sm font-medium text-muted-foreground">Description</Label>
-              <p className="text-sm leading-relaxed bg-muted p-3 rounded-md">
-                {contestToView.description}
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <Label className="text-sm font-medium text-muted-foreground">Prérequis</Label>
-              <p className="text-sm leading-relaxed bg-muted p-3 rounded-md">
-                {contestToView.requirements}
-              </p>
+            {/* Description et Prérequis côte à côte */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-muted-foreground">Description</Label>
+                <p className="text-sm leading-relaxed bg-muted p-3 rounded-md">
+                  {contestToView.description}
+                </p>
+              </div>
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-muted-foreground">Prérequis</Label>
+                <p className="text-sm leading-relaxed bg-muted p-3 rounded-md">
+                  {contestToView.requirements}
+                </p>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-muted-foreground">Salaire</Label>
-                <p className="font-semibold">{contestToView.salary.toLocaleString('fr-FR')} €</p>
+                <p className="font-semibold">{contestToView.salary.toLocaleString('fr-FR')} DH</p>
               </div>
               <div className="space-y-2">
                 <Label className="text-sm font-medium text-muted-foreground">Lieu</Label>
@@ -1027,6 +1069,24 @@ export default function AdminDashboard() {
                 })()}
               </div>
             </div>
+
+            {/* Papier requis et description du papier */}
+            {typeof contestToView.papierRequis !== 'undefined' && (
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-muted-foreground">Papier requis</Label>
+                <p className="font-semibold">
+                  {contestToView.papierRequis ? 'Oui' : 'Non'}
+                </p>
+              </div>
+            )}
+            {contestToView.papierRequis && contestToView.descriptionPapier && (
+              <div className="space-y-2">
+                <Label className="text-sm font-medium text-muted-foreground">Description du papier requis</Label>
+                <p className="font-semibold">
+                  {contestToView.descriptionPapier}
+                </p>
+              </div>
+            )}
 
             <div className="flex justify-end pt-4">
               <Button variant="outline" onClick={() => setViewModalOpen(false)}>
@@ -1090,6 +1150,42 @@ export default function AdminDashboard() {
               className="w-full min-h-[80px] px-3 py-2 border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
               required
             />
+          </div>
+
+          {/* Papier Requis + Description Papier (edit modal) */}
+          <div className="flex items-center gap-4">
+            <Label htmlFor="editPapierRequis" className="flex items-center gap-2 mb-0">
+              <Input
+                id="editPapierRequis"
+                name="papierRequis"
+                type="checkbox"
+                checked={Boolean((contestToEdit as any)?.papierRequis)}
+                onChange={e => {
+                  setEditContestFormData(prev => ({
+                    ...prev,
+                    papierRequis: (e.target as HTMLInputElement).checked
+                  }));
+                }}
+                className="w-4 h-4 mr-2"
+              />
+              Papier requis ?
+            </Label>
+            {Boolean((contestToEdit as any)?.papierRequis) && (
+              <div className="flex-1">
+                <Label htmlFor="editDescriptionPapier" className="mb-0">Description du papier requis</Label>
+                <Input
+                  id="editDescriptionPapier"
+                  name="descriptionPapier"
+                  value={(editContestFormData as any).descriptionPapier || ''}
+                  onChange={e => setEditContestFormData(prev => ({
+                    ...prev,
+                    descriptionPapier: e.target.value
+                  }))}
+                  required={Boolean((contestToEdit as any)?.papierRequis)}
+                  className="ml-2"
+                />
+              </div>
+            )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

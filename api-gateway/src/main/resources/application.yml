@@ -4,55 +4,59 @@ server:
 spring:
   application:
     name: api-gateway
+
   cloud:
     gateway:
+
       routes:
         - id: auth-service
-          uri: lb://auth-service
+          uri: http://localhost:8081
           predicates:
             - Path=/api/auth/**
-          filters:
-            - StripPrefix=0
+
         - id: candidates-route
-          uri: lb://candidate-service
+          uri: http://localhost:8082
           predicates:
             - Path=/api/candidates/**
-          filters:
-            - StripPrefix=0
+
         - id: job-service
-          uri: lb://job-service
+          uri: http://localhost:8083
           predicates:
             - Path=/api/jobs/**
-          filters:
-            - StripPrefix=0
+
         - id: ats-service
-          uri: lb://ats-service
+          uri: http://localhost:8085
           predicates:
             - Path=/api/ats/**
-          filters:
-            - StripPrefix=0
+
         - id: application-service
-          uri: lb://application-service
+          uri: http://localhost:8084
           predicates:
             - Path=/api/applications/**
-          filters:
-            - StripPrefix=0
+
       globalcors:
         cors-configurations:
           '[/**]':
-            allowedOrigins: 
+            allowedOrigins:
               - "http://localhost:3000"
               - "http://127.0.0.1:3000"
+
             allowedMethods:
               - GET
               - POST
               - PUT
               - DELETE
+              - PATCH
               - OPTIONS
+
             allowedHeaders: "*"
+
             allowCredentials: true
 
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+
+instance:
+  prefer-ip-address: true

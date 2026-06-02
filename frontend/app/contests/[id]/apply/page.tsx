@@ -346,7 +346,7 @@ export default function ApplyPage() {
                   <Input
                     id="expectedSalary"
                     type="text"
-                    placeholder="Ex: 50000€ ou Négociable"
+                    placeholder="Ex: 50000DH ou Négociable"
                     {...register('expectedSalary')}
                   />
                 </div>

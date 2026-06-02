@@ -198,7 +198,7 @@ export default function AdminJobsPage() {
                             <Badge variant="secondary">{job.type}</Badge>
                           </TableCell>
                           <TableCell>
-                            {job.salary ? `${job.salary.toLocaleString()}€` : 'N/A'}
+                            {job.salary ? `${job.salary.toLocaleString()}DH` : 'N/A'}
                           </TableCell>
                           <TableCell className="text-center">
                             <Badge 

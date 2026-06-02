@@ -127,7 +127,7 @@ export default function ApplicationsPage() {
                     Vous n'avez pas encore postulé à des offres d'emploi.
                   </p>
                   <Button className="mt-6" asChild>
-                    <Link href="/jobs">Voir les offres d'emploi</Link>
+                    <Link href="/contests">Voir les offres d'emploi</Link>
                   </Button>
                 </div>
               </CardContent>

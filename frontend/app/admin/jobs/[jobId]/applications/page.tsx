@@ -59,6 +59,9 @@ interface JobApplication {
     experience: string;
   };
   cvContent?: string;
+  cvFileName?: string;
+  contestDocumentContent?: string;
+  contestDocumentFileName?: string;
   coverLetter?: string;
   portfolioUrl?: string;
   linkedinProfile?: string;
@@ -68,7 +71,19 @@ interface JobApplication {
 }
 
 export default function AdminJobApplicationsPage() {
-  const { user } = useAppSelector((state) => state.auth);
+    // Fonction pour changer le statut d'une candidature
+    const handleStatusChange = async (applicationId: number, status: 'ACCEPTED' | 'REJECTED') => {
+      try {
+        await applicationService.updateApplicationStatus(applicationId.toString(), status);
+        setApplications((prev) =>
+          prev.map((app) =>
+            app.applicationId === applicationId ? { ...app, status } : app
+          )
+        );
+      } catch (err) {
+        alert('Erreur lors de la mise à jour du statut');
+      }
+    };
   const params = useParams();
   const router = useRouter();
   const jobId = params.jobId as string;
@@ -175,6 +190,11 @@ export default function AdminJobApplicationsPage() {
     window.open(cvUrl, '_blank', 'width=1200,height=800');
   };
 
+  const viewContestDocument = (applicationId: number) => {
+    const documentUrl = `http://localhost:8080/api/applications/download-contest-document/${applicationId}`;
+    window.open(documentUrl, '_blank', 'width=1200,height=800');
+  };
+
   if (isLoading) {
     return <Loader fullScreen />;
   }
@@ -248,7 +268,7 @@ export default function AdminJobApplicationsPage() {
                     <DollarSign className="h-4 w-4 text-muted-foreground" />
                     <div>
                       <p className="text-sm text-muted-foreground">Salaire</p>
-                      <p className="font-medium">{job.salary ? `${job.salary.toLocaleString()}€` : 'N/A'}</p>
+                      <p className="font-medium">{job.salary ? `${job.salary.toLocaleString()}DH` : 'N/A'}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
@@ -401,7 +421,25 @@ export default function AdminJobApplicationsPage() {
                                       {status.label}
                                     </Badge>
                                   </TableCell>
-                                  <TableCell className="text-right">
+                                  <TableCell className="text-right flex flex-row gap-2 justify-end">
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="mr-2"
+                                      onClick={() => handleStatusChange(application.applicationId, 'ACCEPTED')}
+                                      disabled={application.status === 'ACCEPTED'}
+                                    >
+                                      Accepter
+                                    </Button>
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="mr-2"
+                                      onClick={() => handleStatusChange(application.applicationId, 'REJECTED')}
+                                      disabled={application.status === 'REJECTED'}
+                                    >
+                                      Refuser
+                                    </Button>
                                     <Button variant="ghost" size="sm" onClick={() => handleViewDetails(application)}>
                                       <User className="h-4 w-4 mr-2" />
                                       Détails
@@ -436,6 +474,7 @@ export default function AdminJobApplicationsPage() {
             onClose={() => setDetailsModalOpen(false)}
             title="Détails du candidat"
             description="Informations complètes du candidat et documents"
+            className="max-h-[90vh] overflow-y-auto"
           >
             {selectedApplication && (
               <div className="space-y-6">
@@ -491,7 +530,7 @@ export default function AdminJobApplicationsPage() {
                       <span className="text-sm font-medium text-muted-foreground">Salaire attendu:</span>
                       <p className="text-sm mt-1">
                         {selectedApplication.expectedSalary 
-                          ? `${selectedApplication.expectedSalary.toLocaleString()}€` 
+                          ? `${selectedApplication.expectedSalary.toLocaleString()}DH` 
                           : 'Non spécifié'}
                       </p>
                     </div>
@@ -519,7 +558,9 @@ export default function AdminJobApplicationsPage() {
                           <FileText className="h-4 w-4 text-muted-foreground" />
                           <div>
                             <p className="text-sm font-medium">CV</p>
-                            <p className="text-xs text-muted-foreground">Contenu du CV disponible</p>
+                            <p className="text-xs text-muted-foreground">
+                              {selectedApplication.cvFileName || 'Contenu du CV disponible'}
+                            </p>
                           </div>
                         </div>
                         <Button 
@@ -532,13 +573,39 @@ export default function AdminJobApplicationsPage() {
                         </Button>
                       </div>
                     )}
+
+                    {selectedApplication.contestDocumentContent && (
+                      <div className="flex items-center justify-between p-3 border rounded-lg">
+                        <div className="flex items-center gap-2">
+                          <FileText className="h-4 w-4 text-muted-foreground" />
+                          <div>
+                            <p className="text-sm font-medium">Document de concours</p>
+                            <p className="text-xs text-muted-foreground">
+                              {selectedApplication.contestDocumentFileName || 'Document de concours disponible'}
+                            </p>
+                          </div>
+                        </div>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => viewContestDocument(selectedApplication.applicationId!)}
+                        >
+                          <Eye className="h-4 w-4 mr-2" />
+                          Voir document
+                        </Button>
+                      </div>
+                    )}
                     
                     {selectedApplication.coverLetter && (
                       <div className="p-3 border rounded-lg">
                         <p className="text-sm font-medium mb-2">Lettre de motivation</p>
-                        <p className="text-sm text-muted-foreground whitespace-pre-wrap max-h-32 overflow-y-auto">
-                          {selectedApplication.coverLetter}
-                        </p>
+                        <textarea
+                          className="w-full border rounded-md p-2 bg-muted/50 text-sm text-muted-foreground resize-none min-h-[80px] max-h-40"
+                          value={selectedApplication.coverLetter}
+                          readOnly
+                          disabled
+                          style={{ fontFamily: 'inherit', lineHeight: '1.5' }}
+                        />
                       </div>
                     )}
                     

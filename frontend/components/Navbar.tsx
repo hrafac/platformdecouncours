@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux';
 import { logout } from '@/store/slices/authSlice';
@@ -41,10 +42,7 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <span className="font-bold">C</span>
-            </div>
-            <span className="text-xl font-bold text-foreground">ConcoursHub</span>
+            <Image src="/m2.png" alt="MARSA MAROC" width={40} height={40} className="h-10 w-10 object-contain" priority />
           </Link>
 
           {/* Desktop Navigation */}

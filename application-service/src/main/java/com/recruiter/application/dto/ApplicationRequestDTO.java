@@ -14,4 +14,8 @@ public class ApplicationRequestDTO {
     private String additionalInfo;   // Informations supplémentaires
     private String expectedSalary;   // Salaire attendu (optionnel)
     private String availabilityDate; // Date de disponibilité
+
+    // Champs pour le document de concours
+    private String contestDocumentFileName; // Nom du fichier du document de concours
+    private String contestDocumentContent;  // Contenu du document de concours (texte ou base64)
 }

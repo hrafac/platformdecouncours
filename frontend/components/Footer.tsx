@@ -14,7 +14,7 @@ export default function Footer() {
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                 <span className="font-bold">C</span>
               </div>
-              <span className="text-xl font-bold">ConcoursHub</span>
+              <span className="text-xl font-bold">MARSA MAROC</span>
             </div>
             <p className="mt-4 text-sm text-muted-foreground">
               Plateforme de gestion des concours publics. Trouvez et postulez aux opportunités qui correspondent à votre profil.
@@ -81,7 +81,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-3">
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail className="h-4 w-4" />
-                contact@concourshub.ma
+                contact@MARSAMAROC.ma
               </li>
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Phone className="h-4 w-4" />
@@ -97,7 +97,7 @@ export default function Footer() {
 
         <div className="mt-8 border-t border-border pt-8">
           <p className="text-center text-sm text-muted-foreground">
-            &copy; {currentYear} ConcoursHub. Tous droits réservés.
+            &copy; {currentYear} MARSA MAROC. Tous droits réservés.
           </p>
         </div>
       </div>

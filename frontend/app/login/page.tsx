@@ -147,7 +147,7 @@ export default function LoginPage() {
             <p className="text-center text-sm text-muted-foreground">
               Pas encore de compte?{' '}
               <Link href="/register" className="font-medium text-primary hover:underline">
-                Créer un compte
+                 compte
               </Link>
             </p>
           </CardFooter>

@@ -30,4 +30,9 @@ public class JobApplication {
     private String additionalInfo;   // Informations supplémentaires
     private String expectedSalary;   // Salaire attendu
     private String availabilityDate; // Date de disponibilité
+
+    // Champs pour le document de concours
+    private String contestDocumentFileName; // Nom du fichier du document de concours
+    @Column(columnDefinition = "TEXT")
+    private String contestDocumentContent;  // Contenu du document de concours (optionnel)
 }

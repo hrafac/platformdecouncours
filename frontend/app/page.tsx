@@ -82,9 +82,7 @@ export default function HomePage() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
-                <Link href="/register">Créer un compte</Link>
-              </Button>
+             
             </div>
           </div>
         </div>
@@ -153,7 +151,7 @@ export default function HomePage() {
             <div className="flex items-center justify-between">
               <h2 className="text-2xl font-bold">Offres d'emploi récentes</h2>
               <Button variant="ghost" asChild>
-                <Link href="/jobs">
+                <Link href="/contests">
                   Voir tout
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>

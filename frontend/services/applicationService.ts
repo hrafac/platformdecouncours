@@ -48,7 +48,7 @@ export const applicationService = {
   },
 
   async updateApplicationStatus(id: string, status: ApplicationStatus): Promise<Application> {
-    const response = await api.patch<Application>(`/applications/${id}/status`, { status });
+    const response = await api.patch<Application>(`/applications/${id}/status?status=${status}`);
     return response.data;
   },
 };

@@ -31,4 +31,8 @@ public class JobOffer {
     private LocalTime competitionTime;
    
     private String competitionStatus; // "NOT_STARTED", "IN_PROGRESS", "COMPLETED"
+    // Ajout pour gestion de papier requis
+    private Boolean papierRequis; // true si un papier est requis, false sinon
+    @Column(columnDefinition = "TEXT")
+    private String descriptionPapier; // description du papier demandé
 }

@@ -273,8 +273,8 @@ export default function ContestDetailsPage() {
                   <p className="font-medium text-foreground">Besoin d&apos;aide?</p>
                   <p className="mt-1">
                     Contactez-nous à{' '}
-                    <a href="mailto:support@concourshub.ma" className="text-primary hover:underline">
-                      support@concourshub.ma
+                    <a href="mailto:support@MARSAMAROC.ma" className="text-primary hover:underline">
+                      support@MARSAMAROC.ma
                     </a>
                   </p>
                 </div>

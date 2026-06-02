@@ -20,3 +20,5 @@ eureka:
 
 jwt:
   secret: mySecretKeyForJWT123456789012345678901234567890
+instance:
+    prefer-ip-address: true

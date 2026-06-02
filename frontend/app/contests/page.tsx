@@ -10,9 +10,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import ContestCard from '@/components/ContestCard';
 import ContestCardSkeleton from '@/components/ContestCardSkeleton';
 import JobCard from '@/components/JobCard';
+import Modal from '@/components/Modal';
+import toast from 'react-hot-toast';
 import { Search, Filter, X, Briefcase } from 'lucide-react';
 import { mockContests, categories } from '@/lib/mockData';
 import { jobService } from '@/lib/jobService';
@@ -32,6 +36,16 @@ export default function ContestsPage() {
   const [competitions, setCompetitions] = useState<JobOffer[]>([]);
   const [competitionsError, setCompetitionsError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'contests' | 'jobs'>('contests');
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [contestToEdit, setContestToEdit] = useState<JobOffer | null>(null);
+  const [editFormData, setEditFormData] = useState({
+    title: '',
+    description: '',
+    location: '',
+    competitionDate: '',
+    competitionTime: '',
+    competitionStatus: 'OPEN',
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -143,6 +157,68 @@ export default function ContestsPage() {
     setSelectedCategory('all');
     setSelectedStatus('all');
     setCurrentPage(1);
+  };
+
+  const handleDeleteContest = async (contest: JobOffer) => {
+    const confirmed = window.confirm(`Voulez-vous vraiment supprimer le concours \"${contest.title}\" ?`);
+    if (!confirmed) return;
+
+    try {
+      await jobService.deleteJob(contest.id);
+      setCompetitions((current) => current.filter((item) => item.id !== contest.id));
+      setJobs((current) => current.filter((item) => item.id !== contest.id));
+      toast.success('Concours supprimé avec succès.');
+    } catch (error) {
+      console.error('Error deleting contest:', error);
+      toast.error('Impossible de supprimer le concours.');
+    }
+  };
+
+  const handleOpenEdit = (contest: JobOffer) => {
+    setContestToEdit(contest);
+    setEditFormData({
+      title: contest.title,
+      description: contest.description,
+      location: contest.location,
+      competitionDate: contest.competitionDate || '',
+      competitionTime: contest.competitionTime || '',
+      competitionStatus: contest.competitionStatus || 'OPEN',
+    });
+    setEditModalOpen(true);
+  };
+
+  const handleCloseEdit = () => {
+    setEditModalOpen(false);
+    setContestToEdit(null);
+  };
+
+  const handleEditFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setEditFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleUpdateContest = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!contestToEdit) return;
+
+    try {
+      const updatedContest = await jobService.updateJob(contestToEdit.id, {
+        title: editFormData.title,
+        description: editFormData.description,
+        location: editFormData.location,
+        competitionDate: editFormData.competitionDate || null,
+        competitionTime: editFormData.competitionTime || null,
+        competitionStatus: editFormData.competitionStatus,
+      });
+
+      setCompetitions((current) => current.map((item) => (item.id === updatedContest.id ? updatedContest : item)));
+      setJobs((current) => current.map((item) => (item.id === updatedContest.id ? updatedContest : item)));
+      toast.success('Concours mis à jour avec succès.');
+      handleCloseEdit();
+    } catch (error) {
+      console.error('Error updating contest:', error);
+      toast.error('Impossible de mettre à jour le concours.');
+    }
   };
 
   return (
@@ -271,7 +347,12 @@ export default function ContestsPage() {
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {paginatedItems.map((item: any) => (
                 activeTab === 'contests' ? (
-                  <ContestCard key={item.id} contest={item} />
+                  <ContestCard
+                    key={item.id}
+                    contest={item}
+                    onEdit={() => handleOpenEdit(item)}
+                    onDelete={() => handleDeleteContest(item)}
+                  />
                 ) : (
                   <JobCard key={item.id} job={item} />
                 )
@@ -337,6 +418,90 @@ export default function ContestsPage() {
           </div>
         )}
       </div>
+
+      <Modal
+        isOpen={editModalOpen}
+        onClose={handleCloseEdit}
+        title="Modifier le concours"
+        description="Mettez à jour les détails du concours et enregistrez les modifications."
+        className="max-w-2xl"
+      >
+        <form onSubmit={handleUpdateContest} className="space-y-4 py-4">
+          <div>
+            <Label htmlFor="title">Titre</Label>
+            <Input
+              id="title"
+              name="title"
+              value={editFormData.title}
+              onChange={handleEditFormChange}
+            />
+          </div>
+          <div>
+            <Label htmlFor="description">Description</Label>
+            <Textarea
+              id="description"
+              name="description"
+              value={editFormData.description}
+              onChange={handleEditFormChange}
+            />
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div>
+              <Label htmlFor="location">Lieu</Label>
+              <Input
+                id="location"
+                name="location"
+                value={editFormData.location}
+                onChange={handleEditFormChange}
+              />
+            </div>
+            <div>
+              <Label htmlFor="competitionStatus">Statut</Label>
+              <Select
+                value={editFormData.competitionStatus}
+                onValueChange={(value) => setEditFormData((prev) => ({ ...prev, competitionStatus: value }))}
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Statut" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="OPEN">Ouvert</SelectItem>
+                  <SelectItem value="CLOSED">Fermé</SelectItem>
+                  <SelectItem value="UPCOMING">À venir</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div>
+              <Label htmlFor="competitionDate">Date du concours</Label>
+              <Input
+                id="competitionDate"
+                name="competitionDate"
+                type="date"
+                value={editFormData.competitionDate}
+                onChange={handleEditFormChange}
+              />
+            </div>
+            <div>
+              <Label htmlFor="competitionTime">Heure du concours</Label>
+              <Input
+                id="competitionTime"
+                name="competitionTime"
+                type="time"
+                value={editFormData.competitionTime}
+                onChange={handleEditFormChange}
+              />
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-2 pt-4">
+            <Button variant="secondary" type="button" onClick={handleCloseEdit}>
+              Annuler
+            </Button>
+            <Button type="submit">Enregistrer</Button>
+          </div>
+        </form>
+      </Modal>
     </div>
   );
 }

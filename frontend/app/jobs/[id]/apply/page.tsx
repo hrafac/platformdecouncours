@@ -28,6 +28,7 @@ export default function JobApplyPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [selectedFileName, setSelectedFileName] = useState<string | null>(null);
+  const [selectedContestDocumentFileName, setSelectedContestDocumentFileName] = useState<string | null>(null);
 
   const {
     register,
@@ -63,6 +64,34 @@ export default function JobApplyPage() {
     }
   }, [user, setValue]);
 
+  const analyzeApplication = async (applicationId: number) => {
+    try {
+      const response = await fetch('http://localhost:8000/analyze/application', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          application_id: applicationId
+        }),
+      });
+
+      const result = await response.json();
+      console.log('Analyse result:', result);
+      return result;
+    } catch (error) {
+      console.error('Error analyzing application:', error);
+      throw error;
+    }
+  };
+
+  // Fonction utilitaire pour récupérer le candidat par userId
+  const getCandidateByUserId = async (userId: string | number) => {
+    const res = await fetch(`http://localhost:8080/api/candidates/user/${userId}`);
+    if (!res.ok) throw new Error('Erreur lors de la récupération du candidat');
+    return res.json();
+  };
+
   const onSubmit = async (data: ApplicationFormData) => {
     setIsSubmitting(true);
 
@@ -86,6 +115,24 @@ export default function JobApplyPage() {
           reader.readAsDataURL(file);
         });
       }
+
+      let contestDocumentBase64 = '';
+      let contestDocumentFileName = '';
+
+      if (data.papier && data.papier[0]) {
+        const file = data.papier[0];
+        contestDocumentFileName = file.name;
+        contestDocumentBase64 = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            const result = reader.result as string;
+            const base64 = result.split(',')[1];
+            resolve(base64);
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(file);
+        });
+      }
       
       // Create application data object
       const applicationData = {
@@ -96,11 +143,34 @@ export default function JobApplyPage() {
         linkedinProfile: data.linkedinProfile || '',
         additionalInfo: data.additionalInfo || '',
         expectedSalary: data.expectedSalary || '',
-        availabilityDate: data.availabilityDate || ''
+        availabilityDate: data.availabilityDate || '',
+        contestDocumentContent: contestDocumentBase64,
+        contestDocumentFileName: contestDocumentFileName
       };
-      
-      // Submit application using JSON method
-      await applicationService.submitApplicationWithJSON(4, Number(params.id), applicationData);
+
+      // Vérifier l'utilisateur
+      if (!user || !user.id) {
+        toast.error("Utilisateur non connecté ou ID invalide");
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Récupérer l'id du candidat à partir du userId
+      let candidateId;
+      try {
+        const candidate = await getCandidateByUserId(user.id);
+        candidateId = candidate.id;
+      } catch (err) {
+        toast.error("Impossible de récupérer le profil candidat");
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Soumettre la candidature avec le bon id
+      const submitResult = await applicationService.submitApplicationWithJSON(candidateId, Number(params.id), applicationData);
+      if (submitResult && submitResult.id) {
+        await analyzeApplication(Number(submitResult.id));
+      }
       
       setIsSubmitting(false);
       setIsSubmitted(true);
@@ -129,6 +199,23 @@ export default function JobApplyPage() {
     }
   };
 
+  const handleContestDocumentFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.type !== 'application/pdf') {
+        toast.error('Veuillez sélectionner un fichier PDF');
+        e.target.value = '';
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error('Le fichier ne doit pas dépasser 5 Mo');
+        e.target.value = '';
+        return;
+      }
+      setSelectedContestDocumentFileName(file.name);
+    }
+  };
+
   if (isLoading) {
     return (
       <ProtectedRoute allowedRoles={['CANDIDATE']}>
@@ -143,7 +230,7 @@ export default function JobApplyPage() {
         <div className="flex min-h-[60vh] flex-col items-center justify-center px-4">
           <h1 className="text-2xl font-bold">Offre d'emploi non trouvée</h1>
           <Button className="mt-6" asChild>
-            <Link href="/jobs">Retour aux offres</Link>
+            <Link href="">Retour aux offres</Link>
           </Button>
         </div>
       </ProtectedRoute>
@@ -167,7 +254,7 @@ export default function JobApplyPage() {
               <Link href="/dashboard">Mes candidatures</Link>
             </Button>
             <Button asChild>
-              <Link href="/jobs">Autres offres</Link>
+              <Link href="/contests">Autres offres</Link>
             </Button>
           </div>
         </div>
@@ -274,6 +361,49 @@ export default function JobApplyPage() {
                   )}
                 </div>
 
+                {/* Papier requis (si applicable) */}
+                {job.papierRequis && (
+                  <div className="space-y-2">
+                    <Label htmlFor="papier">{job.descriptionPapier ? job.descriptionPapier : 'Document requis (PDF uniquement, max 5 Mo)'}</Label>
+                    <div className="relative">
+                      <input
+                        id="papier"
+                        type="file"
+                        accept=".pdf"
+                        className="hidden"
+                        {...register('papier', {
+                          required: 'Ce document est requis',
+                        })}
+                        onChange={(e) => {
+                          register('papier').onChange(e);
+                          handleContestDocumentFileChange(e);
+                        }}
+                      />
+                      <label
+                        htmlFor="papier"
+                        className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed border-border bg-muted/30 p-6 transition-colors hover:bg-muted/50"
+                      >
+                        {selectedContestDocumentFileName ? (
+                          <>
+                            <FileText className="h-5 w-5 text-primary" />
+                            <span className="text-sm font-medium">{selectedContestDocumentFileName}</span>
+                          </>
+                        ) : (
+                          <>
+                            <Upload className="h-5 w-5 text-muted-foreground" />
+                            <span className="text-sm text-muted-foreground">
+                              Cliquez pour télécharger le document
+                            </span>
+                          </>
+                        )}
+                      </label>
+                    </div>
+                    {errors.papier && (
+                      <p className="text-sm text-destructive">{errors.papier.message}</p>
+                    )}
+                  </div>
+                )}
+
                 {/* Cover Letter */}
                 <div className="space-y-2">
                   <Label htmlFor="coverLetter">Lettre de motivation</Label>
@@ -333,7 +463,7 @@ export default function JobApplyPage() {
                   <Input
                     id="expectedSalary"
                     type="text"
-                    placeholder="Ex: 50000€ ou Négociable"
+                    placeholder="Ex: 50000DH ou Négociable"
                     {...register('expectedSalary')}
                   />
                 </div>

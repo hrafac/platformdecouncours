@@ -266,78 +266,7 @@ export default function JobDetailsPage() {
             </Card>
           </div>
 
-          {/* Right Column - Apply Card */}
-          <div className="lg:col-span-1">
-            <Card className="sticky top-24">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Briefcase className="h-5 w-5" />
-                  Postuler
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {job.competitionStatus === 'NOT_STARTED' ? (
-                  <>
-                    <p className="text-sm text-muted-foreground">
-                      Ce concours n'a pas encore commencé.
-                    </p>
-                    <p className="text-sm">
-                      <span className="font-medium">Début:</span>{' '}
-                      {formatDate(job.competitionDate)} à {formatTime(job.competitionTime)}
-                    </p>
-                    <Button className="w-full" size="lg" disabled>
-                      Concours non commencé
-                    </Button>
-                  </>
-                ) : job.competitionStatus === 'IN_PROGRESS' ? (
-                  <>
-                    <p className="text-sm text-muted-foreground">
-                      Le concours est actuellement en cours. Vous pouvez postuler maintenant.
-                    </p>
-                    {!isAuthenticated && (
-                      <p className="text-sm text-muted-foreground">
-                        Connectez-vous pour soumettre votre candidature.
-                      </p>
-                    )}
-                    {isAuthenticated && user?.role === 'ADMIN' && (
-                      <p className="text-sm text-yellow-600">
-                        Les administrateurs ne peuvent pas postuler aux concours.
-                      </p>
-                    )}
-                    <Button
-                      className="w-full"
-                      size="lg"
-                      onClick={handleApply}
-                      disabled={isAuthenticated && user?.role === 'ADMIN'}
-                    >
-                      {isAuthenticated ? 'Postuler maintenant' : 'Se connecter pour postuler'}
-                    </Button>
-                  </>
-                ) : (
-                  <>
-                    <p className="text-sm text-muted-foreground">
-                      Ce concours est terminé.
-                    </p>
-                    <Button className="w-full" size="lg" disabled>
-                      Concours terminé
-                    </Button>
-                  </>
-                )}
-
-                <Separator />
-
-                <div className="text-sm text-muted-foreground">
-                  <p className="font-medium text-foreground">Besoin d'aide?</p>
-                  <p className="mt-1">
-                    Contactez-nous à{' '}
-                    <a href="mailto:support@concourshub.ma" className="text-primary hover:underline">
-                      support@concourshub.ma
-                    </a>
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+        
         </div>
       </div>
     </div>

@@ -80,6 +80,7 @@ export interface ApplicationFormData {
   email: string;
   coverLetter: string;
   cv: FileList;
+  papier?: FileList;
   portfolioUrl?: string;
   linkedinProfile?: string;
   additionalInfo?: string;
@@ -123,6 +124,8 @@ export interface JobOffer {
   competitionDate: string | null;
   competitionTime: string | null;
   competitionStatus: string | null;
+  papierRequis?: boolean;
+  descriptionPapier?: string;
 }
 
 export interface JobApplication {
@@ -134,6 +137,8 @@ export interface JobApplication {
   applicationDate: string;
   cvContent: string;
   cvFileName: string;
+  contestDocumentContent?: string;
+  contestDocumentFileName?: string;
   coverLetter: string;
   portfolioUrl?: string;
   linkedinProfile?: string;

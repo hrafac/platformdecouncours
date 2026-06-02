@@ -39,9 +39,20 @@ export default function CandidateDashboard() {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        // Using hardcoded candidateId=4 for now, should come from user context
-        // Use the endpoint that returns applications with job details
-        const data = await applicationService.getAppliedJobsDetailsByCandidate(4);
+        // 1. Récupérer le candidateId à partir du userId
+        if (!user?.id) {
+          setError("Utilisateur non connecté");
+          setIsLoading(false);
+          return;
+        }
+        const candidateRes = await fetch(`http://localhost:8080/api/candidates/user/${user.id}`);
+        if (!candidateRes.ok) {
+          throw new Error("Impossible de récupérer le candidat");
+        }
+        const candidate = await candidateRes.json();
+        const candidateId = candidate.id;
+        // 2. Charger les candidatures avec le candidateId
+        const data = await applicationService.getAppliedJobsDetailsByCandidate(candidateId);
         setApplications(data);
       } catch (err) {
         console.error('Error fetching applications:', err);
@@ -51,8 +62,10 @@ export default function CandidateDashboard() {
       }
     };
 
-    fetchApplications();
-  }, []);
+    if (user?.id) {
+      fetchApplications();
+    }
+  }, [user]);
 
   const statusConfig = {
     PENDING: {
@@ -126,7 +139,7 @@ export default function CandidateDashboard() {
               </p>
             </div>
             <Button asChild>
-              <Link href="/jobs">
+              <Link href="/contests">
                 <Search className="mr-2 h-4 w-4" />
                 Trouver une offre
               </Link>
@@ -268,12 +281,12 @@ export default function CandidateDashboard() {
                             <h3 className="mt-4 text-lg font-medium">Aucune candidature</h3>
                             <p className="mt-2 text-muted-foreground">
                               {tab === 'all'
-                                ? "Vous n'avez pas encore postulé à une offre."
+                                ? "Vous n'avez pas encore postulé à un concours."
                                 : 'Aucune candidature dans cette catégorie.'}
                             </p>
                             {tab === 'all' && (
                               <Button className="mt-4" asChild>
-                                <Link href="/jobs">Découvrir les offres</Link>
+                                <Link href="/contests">Découvrir les concours</Link>
                               </Button>
                             )}
                           </div>
