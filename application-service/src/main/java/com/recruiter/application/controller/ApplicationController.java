@@ -1,12 +1,18 @@
 package com.recruiter.application.controller;
 
 import com.recruiter.application.client.*;
-import com.recruiter.application.dto.*;
-import com.recruiter.application.model.*;
+import com.recruiter.application.dto.AppliedJobDTO;
+import com.recruiter.application.dto.ApplicationRequestDTO;
+import com.recruiter.application.dto.CandidateDTO;
+import com.recruiter.application.dto.ContestDocumentDTO;
+import com.recruiter.application.dto.JobDTO;
+import com.recruiter.application.model.ContestDocument;
+import com.recruiter.application.model.JobApplication;
 import com.recruiter.application.repository.ApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +25,15 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.ByteArrayOutputStream;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 @RestController
 @RequestMapping("/api/applications")
@@ -45,52 +54,136 @@ public class ApplicationController {
             JobApplication application = repository.findById(applicationId)
                 .orElseThrow(() -> new RuntimeException("Application not found"));
 
-            String docContent = application.getContestDocumentContent();
-            String docFileName = application.getContestDocumentFileName();
-
-            if (docContent == null || docContent.isEmpty()) {
+            List<ContestDocument> contestDocuments = application.getContestDocuments();
+            if (contestDocuments == null || contestDocuments.isEmpty()) {
                 return ResponseEntity.notFound().build();
             }
 
-            byte[] docBytes;
-            String contentType = "application/octet-stream";
-            try {
-                docBytes = Base64.getDecoder().decode(docContent);
-                // Détection du type PDF
-                if (docBytes.length >= 4 &&
-                    docBytes[0] == 0x25 && docBytes[1] == 0x50 &&
-                    docBytes[2] == 0x44 && docBytes[3] == 0x46) {
-                    contentType = "application/pdf";
-                } else {
-                    contentType = "application/octet-stream";
-                }
-            } catch (Exception e) {
-                // Si ce n'est pas du base64, traiter comme texte
-                docBytes = docContent.getBytes(java.nio.charset.StandardCharsets.UTF_8);
-                contentType = "text/plain; charset=utf-8";
+            if (contestDocuments.size() == 1) {
+                return buildDocumentResponse(contestDocuments.get(0));
             }
 
-            String fileName = (docFileName != null && !docFileName.isEmpty()) ? docFileName : "DocumentConcours.pdf";
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            try (ZipOutputStream zipOut = new ZipOutputStream(baos)) {
+                int index = 1;
+                java.util.Set<String> usedFileNames = new java.util.HashSet<>();
+                for (ContestDocument document : contestDocuments) {
+                    String fileName = document.getFileName();
+                    if (fileName == null || fileName.isBlank()) {
+                        fileName = "contest-document-" + index + ".dat";
+                    }
+                    fileName = makeUniqueFileName(fileName, usedFileNames, index);
+                    byte[] documentBytes = decodeDocumentContent(document.getContent());
+                    ZipEntry entry = new ZipEntry(fileName);
+                    zipOut.putNextEntry(entry);
+                    zipOut.write(documentBytes);
+                    zipOut.closeEntry();
+                    index++;
+                }
+            }
+
+            byte[] zipBytes = baos.toByteArray();
+            String zipName = "contest-documents-" + applicationId + ".zip";
 
             return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + zipName + "\"")
+                .header(HttpHeaders.CONTENT_TYPE, "application/zip")
+                .header(HttpHeaders.CONTENT_LENGTH, String.valueOf(zipBytes.length))
+                .header("Cache-Control", "no-cache")
+                .body(zipBytes);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Error downloading contest documents: " + e.getMessage());
+        }
+    }
+
+    private ResponseEntity<byte[]> buildDocumentResponse(ContestDocument document) {
+        byte[] docBytes = decodeDocumentContent(document.getContent());
+        String contentType = detectContentType(docBytes, "application/octet-stream");
+        String fileName = (document.getFileName() != null && !document.getFileName().isEmpty())
+                ? document.getFileName() : "DocumentConcours";
+
+        return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + fileName + "\"")
                 .header(HttpHeaders.CONTENT_TYPE, contentType)
                 .header(HttpHeaders.CONTENT_LENGTH, String.valueOf(docBytes.length))
                 .header("Cache-Control", "no-cache")
-                // .header("Access-Control-Allow-Origin", "*")
                 .body(docBytes);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Error downloading contest document: " + e.getMessage());
+    }
+
+    private byte[] decodeDocumentContent(String content) {
+        if (content == null || content.isEmpty()) {
+            return new byte[0];
+        }
+        try {
+            return Base64.getDecoder().decode(content);
+        } catch (IllegalArgumentException e) {
+            return content.getBytes(java.nio.charset.StandardCharsets.UTF_8);
         }
     }
-    @PostMapping("/apply")
-        public JobApplication apply(
+
+    private String detectContentType(byte[] bytes, String fallback) {
+        if (bytes == null || bytes.length < 2) {
+            return fallback;
+        }
+        if (bytes.length >= 4 &&
+            bytes[0] == 0x25 && bytes[1] == 0x50 &&
+            bytes[2] == 0x44 && bytes[3] == 0x46) {
+            return "application/pdf";
+        }
+        if (bytes.length >= 2 && bytes[0] == 0x50 && bytes[1] == 0x4B) {
+            return "application/zip";
+        }
+        if (bytes.length >= 2 &&
+            ((bytes[0] == (byte) 0xFE && bytes[1] == (byte) 0xFF) ||
+             (bytes[0] == (byte) 0xFF && bytes[1] == (byte) 0xFE))) {
+            return "text/plain; charset=utf-16";
+        }
+        return "text/plain; charset=utf-8";
+    }
+
+    private String makeUniqueFileName(String originalFileName, java.util.Set<String> usedFileNames, int index) {
+        String fileName = originalFileName;
+        if (!usedFileNames.add(fileName)) {
+            String baseName = fileName;
+            String extension = "";
+            int dotIndex = fileName.lastIndexOf('.');
+            if (dotIndex > 0) {
+                baseName = fileName.substring(0, dotIndex);
+                extension = fileName.substring(dotIndex);
+            }
+            int suffix = 1;
+            while (!usedFileNames.add(baseName + " (" + suffix + ")" + extension)) {
+                suffix++;
+            }
+            fileName = baseName + " (" + suffix + ")" + extension;
+        }
+        return fileName;
+    }
+
+    @PostMapping(value = "/apply", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public JobApplication applyMultipart(
             @RequestParam Long candidateId,
             @RequestParam Long jobId,
-            @RequestParam(required = false) MultipartFile cvFile,
-            @RequestParam(required = false) MultipartFile contestDocumentFile,
-            @RequestBody(required = false) ApplicationRequestDTO applicationRequest) {
+            @RequestPart(required = false) MultipartFile cvFile,
+            @RequestPart(required = false) MultipartFile contestDocumentFile,
+            @ModelAttribute ApplicationRequestDTO applicationRequest) {
+        return processApplication(candidateId, jobId, cvFile, contestDocumentFile, applicationRequest);
+    }
+
+    @PostMapping(value = "/apply", consumes = {MediaType.APPLICATION_JSON_VALUE, "application/json;charset=UTF-8"})
+    public JobApplication applyJson(
+            @RequestParam Long candidateId,
+            @RequestParam Long jobId,
+            @RequestBody ApplicationRequestDTO applicationRequest) {
+        return processApplication(candidateId, jobId, null, null, applicationRequest);
+    }
+
+    private JobApplication processApplication(Long candidateId,
+                                              Long jobId,
+                                              MultipartFile cvFile,
+                                              MultipartFile contestDocumentFile,
+                                              ApplicationRequestDTO applicationRequest) {
         try {
             // 1. Fetch Candidate skills from auth-service
             CandidateDTO candidate;
@@ -123,7 +216,6 @@ public class ApplicationController {
             // 5. Handle CV file upload
             if (cvFile != null && !cvFile.isEmpty()) {
                 try {
-                    // Convert PDF to Base64 string for storage
                     byte[] cvBytes = cvFile.getBytes();
                     String cvBase64 = Base64.getEncoder().encodeToString(cvBytes);
                     application.setCvContent(cvBase64);
@@ -132,26 +224,29 @@ public class ApplicationController {
                     throw new RuntimeException("Error processing CV file: " + e.getMessage());
                 }
             } else if (applicationRequest != null) {
-                // Fallback to text CV content if no file uploaded
                 application.setCvContent(applicationRequest.getCvContent());
                 application.setCvFileName(applicationRequest.getCvFileName());
             }
 
-            // 5bis. Handle Contest Document file upload
+            // 5bis. Handle Contest Document file upload(s)
             if (contestDocumentFile != null && !contestDocumentFile.isEmpty()) {
                 try {
-                    // Convert PDF to Base64 string for storage
                     byte[] docBytes = contestDocumentFile.getBytes();
                     String docBase64 = Base64.getEncoder().encodeToString(docBytes);
-                    application.setContestDocumentContent(docBase64);
-                    application.setContestDocumentFileName(contestDocumentFile.getOriginalFilename());
+                    addContestDocument(application, contestDocumentFile.getOriginalFilename(), docBase64);
                 } catch (Exception e) {
                     throw new RuntimeException("Error processing contest document file: " + e.getMessage());
                 }
             } else if (applicationRequest != null) {
-                // Fallback to text/base64 content if no file uploaded
-                application.setContestDocumentContent(applicationRequest.getContestDocumentContent());
-                application.setContestDocumentFileName(applicationRequest.getContestDocumentFileName());
+                if (applicationRequest.getContestDocuments() != null && !applicationRequest.getContestDocuments().isEmpty()) {
+                    for (ContestDocumentDTO documentDTO : applicationRequest.getContestDocuments()) {
+                        addContestDocument(application, documentDTO.getFileName(), documentDTO.getContent());
+                    }
+                } else if (applicationRequest.getContestDocumentFileName() != null || applicationRequest.getContestDocumentContent() != null) {
+                    addContestDocument(application,
+                            applicationRequest.getContestDocumentFileName(),
+                            applicationRequest.getContestDocumentContent());
+                }
             }
 
             // 6. Set additional application information if provided
@@ -162,21 +257,30 @@ public class ApplicationController {
                 application.setAdditionalInfo(applicationRequest.getAdditionalInfo());
                 application.setExpectedSalary(applicationRequest.getExpectedSalary());
                 application.setAvailabilityDate(applicationRequest.getAvailabilityDate());
-
-                    // Gestion du document de concours
-                    application.setContestDocumentFileName(applicationRequest.getContestDocumentFileName());
-                    application.setContestDocumentContent(applicationRequest.getContestDocumentContent());
             }
 
             JobApplication savedApplication = repository.save(application);
             sendApplicationNotifications(candidate, job, savedApplication);
             return savedApplication;
         } catch (ResponseStatusException e) {
-            throw e; // Laisser Spring gérer la réponse HTTP
+            throw e;
         } catch (Exception e) {
-            // Log the error and return a more informative response
             throw new RuntimeException("Error processing application: " + e.getMessage(), e);
         }
+    }
+
+    private void addContestDocument(JobApplication application, String fileName, String content) {
+        if ((fileName == null || fileName.isBlank()) && (content == null || content.isBlank())) {
+            return;
+        }
+        ContestDocument document = new ContestDocument();
+        document.setFileName(fileName);
+        document.setContent(content);
+        document.setJobApplication(application);
+        if (application.getContestDocuments() == null) {
+            application.setContestDocuments(new java.util.ArrayList<>());
+        }
+        application.getContestDocuments().add(document);
     }
 
     @GetMapping("/job/{jobId}")
@@ -314,6 +418,7 @@ public class ApplicationController {
                 String cvContent = app.getCvContent();
                 jobApplication.put("cvContent", cvContent);
                 jobApplication.put("cvFileName", app.getCvFileName());
+                jobApplication.put("contestDocuments", app.getContestDocuments());
                 jobApplication.put("contestDocumentContent", app.getContestDocumentContent());
                 jobApplication.put("contestDocumentFileName", app.getContestDocumentFileName());
                 jobApplication.put("coverLetter", app.getCoverLetter());

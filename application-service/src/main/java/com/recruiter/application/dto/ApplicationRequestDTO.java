@@ -2,6 +2,8 @@ package com.recruiter.application.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ApplicationRequestDTO {
     private Long candidateId;
@@ -15,7 +17,10 @@ public class ApplicationRequestDTO {
     private String expectedSalary;   // Salaire attendu (optionnel)
     private String availabilityDate; // Date de disponibilité
 
-    // Champs pour le document de concours
+    // Nouveau champ pour plusieurs documents de concours
+    private List<ContestDocumentDTO> contestDocuments;
+
+    // Champs pour le document de concours individuel (compatibilité ascendante)
     private String contestDocumentFileName; // Nom du fichier du document de concours
     private String contestDocumentContent;  // Contenu du document de concours (texte ou base64)
 }

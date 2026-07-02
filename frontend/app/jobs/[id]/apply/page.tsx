@@ -15,7 +15,7 @@ import Loader from '@/components/Loader';
 import { useAppSelector } from '@/hooks/useRedux';
 import { jobService } from '@/lib/jobService';
 import { applicationService } from '@/services/applicationService';
-import type { JobOffer, ApplicationFormData } from '@/types';
+import type { JobOffer, ApplicationFormData, DocumentRequirement } from '@/types';
 import { ArrowLeft, Upload, FileText, CheckCircle, Loader2, AlertCircle } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -28,7 +28,8 @@ export default function JobApplyPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [selectedFileName, setSelectedFileName] = useState<string | null>(null);
-  const [selectedContestDocumentFileName, setSelectedContestDocumentFileName] = useState<string | null>(null);
+  const [documentRequirements, setDocumentRequirements] = useState<DocumentRequirement[]>([]);
+  const [selectedRequirementFileNames, setSelectedRequirementFileNames] = useState<Record<number, string>>({});
 
   const {
     register,
@@ -64,6 +65,25 @@ export default function JobApplyPage() {
     }
   }, [user, setValue]);
 
+  useEffect(() => {
+    const fetchDocumentRequirements = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/api/jobs/${params.id}/requirements`);
+        if (!response.ok) {
+          throw new Error('Erreur lors de la récupération des exigences de document');
+        }
+        const requirements: DocumentRequirement[] = await response.json();
+        setDocumentRequirements(requirements);
+      } catch (error) {
+        console.error('Error fetching document requirements:', error);
+      }
+    };
+
+    if (params.id) {
+      fetchDocumentRequirements();
+    }
+  }, [params.id]);
+
   const analyzeApplication = async (applicationId: number) => {
     try {
       const response = await fetch('http://localhost:8000/analyze/application', {
@@ -92,6 +112,18 @@ export default function JobApplyPage() {
     return res.json();
   };
 
+  const fileToBase64 = async (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const result = reader.result as string;
+        resolve(result.split(',')[1]);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
   const onSubmit = async (data: ApplicationFormData) => {
     setIsSubmitting(true);
 
@@ -103,38 +135,31 @@ export default function JobApplyPage() {
       if (data.cv && data.cv[0]) {
         const file = data.cv[0];
         cvFileName = file.name;
-        cvBase64 = await new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => {
-            const result = reader.result as string;
-            // Remove data URL prefix (e.g., "data:application/pdf;base64,")
-            const base64 = result.split(',')[1];
-            resolve(base64);
-          };
-          reader.onerror = reject;
-          reader.readAsDataURL(file);
-        });
+        cvBase64 = await fileToBase64(file);
       }
 
-      let contestDocumentBase64 = '';
-      let contestDocumentFileName = '';
+      const contestDocuments = await Promise.all(
+        documentRequirements.map(async (requirement) => {
+          const fieldName = `requirement_${requirement.id}`;
+          const fileList = (data as any)[fieldName] as FileList | undefined;
+          if (!fileList?.[0]) {
+            return null;
+          }
 
-      if (data.papier && data.papier[0]) {
-        const file = data.papier[0];
-        contestDocumentFileName = file.name;
-        contestDocumentBase64 = await new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => {
-            const result = reader.result as string;
-            const base64 = result.split(',')[1];
-            resolve(base64);
+          const file = fileList[0];
+          const content = await fileToBase64(file);
+
+          return {
+            fileName: file.name,
+            content,
           };
-          reader.onerror = reject;
-          reader.readAsDataURL(file);
-        });
-      }
-      
-      // Create application data object
+        })
+      );
+
+      const contestDocumentsFiltered = contestDocuments.filter(
+        (doc): doc is { fileName: string; content: string } => Boolean(doc)
+      );
+
       const applicationData = {
         cvContent: cvBase64,
         cvFileName: cvFileName,
@@ -144,8 +169,7 @@ export default function JobApplyPage() {
         additionalInfo: data.additionalInfo || '',
         expectedSalary: data.expectedSalary || '',
         availabilityDate: data.availabilityDate || '',
-        contestDocumentContent: contestDocumentBase64,
-        contestDocumentFileName: contestDocumentFileName
+        contestDocuments: contestDocumentsFiltered,
       };
 
       // Vérifier l'utilisateur
@@ -199,7 +223,7 @@ export default function JobApplyPage() {
     }
   };
 
-  const handleContestDocumentFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleRequirementFileChange = (requirementId: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       if (file.type !== 'application/pdf') {
@@ -212,7 +236,10 @@ export default function JobApplyPage() {
         e.target.value = '';
         return;
       }
-      setSelectedContestDocumentFileName(file.name);
+      setSelectedRequirementFileNames((prev) => ({
+        ...prev,
+        [requirementId]: file.name,
+      }));
     }
   };
 
@@ -361,46 +388,59 @@ export default function JobApplyPage() {
                   )}
                 </div>
 
-                {/* Papier requis (si applicable) */}
-                {job.papierRequis && (
-                  <div className="space-y-2">
-                    <Label htmlFor="papier">{job.descriptionPapier ? job.descriptionPapier : 'Document requis (PDF uniquement, max 5 Mo)'}</Label>
-                    <div className="relative">
-                      <input
-                        id="papier"
-                        type="file"
-                        accept=".pdf"
-                        className="hidden"
-                        {...register('papier', {
-                          required: 'Ce document est requis',
-                        })}
-                        onChange={(e) => {
-                          register('papier').onChange(e);
-                          handleContestDocumentFileChange(e);
-                        }}
-                      />
-                      <label
-                        htmlFor="papier"
-                        className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed border-border bg-muted/30 p-6 transition-colors hover:bg-muted/50"
-                      >
-                        {selectedContestDocumentFileName ? (
-                          <>
-                            <FileText className="h-5 w-5 text-primary" />
-                            <span className="text-sm font-medium">{selectedContestDocumentFileName}</span>
-                          </>
-                        ) : (
-                          <>
-                            <Upload className="h-5 w-5 text-muted-foreground" />
-                            <span className="text-sm text-muted-foreground">
-                              Cliquez pour télécharger le document
-                            </span>
-                          </>
-                        )}
-                      </label>
-                    </div>
-                    {errors.papier && (
-                      <p className="text-sm text-destructive">{errors.papier.message}</p>
-                    )}
+                {documentRequirements.length > 0 && (
+                  <div className="space-y-4">
+                    <h2 className="text-lg font-semibold">Documents requis</h2>
+                    {documentRequirements.map((requirement) => {
+                      const fieldName = `requirement_${requirement.id}`;
+                      const formErrors = errors as Record<string, any>;
+                      const fieldError = formErrors[fieldName]?.message;
+
+                      return (
+                        <div key={requirement.id} className="space-y-2">
+                          <Label htmlFor={fieldName}>
+                        {requirement.descriptionPapier || 'Document requis (PDF uniquement, max 5 Mo)'}
+                        {!requirement.papierRequis && ' (facultatif)'}
+                      </Label>
+                          <div className="relative">
+                            <input
+                              id={fieldName}
+                              type="file"
+                              accept=".pdf"
+                              className="hidden"
+                              {...register(fieldName, {
+                                required: requirement.papierRequis ? 'Ce document est requis' : false,
+                              })}
+                              onChange={(e) => {
+                                register(fieldName).onChange(e);
+                                handleRequirementFileChange(requirement.id)(e);
+                              }}
+                            />
+                            <label
+                              htmlFor={fieldName}
+                              className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed border-border bg-muted/30 p-6 transition-colors hover:bg-muted/50"
+                            >
+                              {selectedRequirementFileNames[requirement.id] ? (
+                                <>
+                                  <FileText className="h-5 w-5 text-primary" />
+                                  <span className="text-sm font-medium">{selectedRequirementFileNames[requirement.id]}</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Upload className="h-5 w-5 text-muted-foreground" />
+                                  <span className="text-sm text-muted-foreground">
+                                    Cliquez pour télécharger le document
+                                  </span>
+                                </>
+                              )}
+                            </label>
+                          </div>
+                          {fieldError && (
+                            <p className="text-sm text-destructive">{fieldError}</p>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 )}
 

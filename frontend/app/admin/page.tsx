@@ -26,7 +26,7 @@ import {
 import Loader from '@/components/Loader';
 import Modal from '@/components/Modal';
 import { mockContests, mockApplications } from '@/lib/mockData';
-import type { Contest, JobOffer } from '@/types';
+import type { Contest, DocumentRequirement, JobOffer } from '@/types';
 import { jobService } from '@/lib/jobService';
 import { userService, type User } from '@/lib/userService';
 import {
@@ -56,10 +56,18 @@ export default function AdminDashboard() {
   const [userToEdit, setUserToEdit] = useState<User | null>(null);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [contestToView, setContestToView] = useState<JobOffer | null>(null);
+  const [jobRequirements, setJobRequirements] = useState<DocumentRequirement[]>([]);
   const [viewModalOpen, setViewModalOpen] = useState(false);
   const [contestToEdit, setContestToEdit] = useState<JobOffer | null>(null);
   const [editContestModalOpen, setEditContestModalOpen] = useState(false);
   const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [requirementModalOpen, setRequirementModalOpen] = useState(false);
+  const [selectedContestForRequirement, setSelectedContestForRequirement] = useState<JobOffer | null>(null);
+  const [selectedRequirementForEdit, setSelectedRequirementForEdit] = useState<DocumentRequirement | null>(null);
+  const [documentRequirementForm, setDocumentRequirementForm] = useState({
+    papierRequis: true,
+    descriptionPapier: ''
+  });
   const [editUserFormData, setEditUserFormData] = useState({
     email: '',
     password: '',
@@ -141,6 +149,77 @@ export default function AdminDashboard() {
         console.error('Error deleting contest:', error);
         toast.error('Erreur lors de la suppression du concours');
       }
+    }
+  };
+
+  const openDocumentRequirementModal = (contest: JobOffer) => {
+    setSelectedContestForRequirement(contest);
+    setSelectedRequirementForEdit(null);
+    setDocumentRequirementForm({ papierRequis: false, descriptionPapier: '' });
+    setRequirementModalOpen(true);
+  };
+
+  const openEditDocumentRequirementModal = (requirement: DocumentRequirement) => {
+    setSelectedRequirementForEdit(requirement);
+    setSelectedContestForRequirement(contestToView);
+    setDocumentRequirementForm({
+      papierRequis: requirement.papierRequis,
+      descriptionPapier: requirement.descriptionPapier || ''
+    });
+    setRequirementModalOpen(true);
+  };
+
+  const resetDocumentRequirementForm = () => {
+    setSelectedRequirementForEdit(null);
+    setSelectedContestForRequirement(null);
+    setDocumentRequirementForm({ papierRequis: true, descriptionPapier: '' });
+  };
+
+  const handleDeleteDocumentRequirement = async (requirementId: number) => {
+    if (!window.confirm('Voulez-vous vraiment supprimer ce document requis ?')) {
+      return;
+    }
+
+    try {
+      await jobService.deleteDocumentRequirement(requirementId);
+      setJobRequirements((prev) => prev.filter((req) => req.id !== requirementId));
+      toast.success('Document requis supprimé avec succès');
+    } catch (error) {
+      console.error('Error deleting document requirement:', error);
+      toast.error('Erreur lors de la suppression du document requis');
+    }
+  };
+
+  const handleSubmitDocumentRequirement = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (selectedRequirementForEdit) {
+      try {
+        const updatedRequirement = await jobService.updateDocumentRequirement(selectedRequirementForEdit.id, documentRequirementForm);
+        setJobRequirements((prev) => prev.map((req) => req.id === updatedRequirement.id ? updatedRequirement : req));
+        toast.success('Document requis mis à jour avec succès');
+        setRequirementModalOpen(false);
+        resetDocumentRequirementForm();
+      } catch (error) {
+        console.error('Error updating document requirement:', error);
+        toast.error('Erreur lors de la mise à jour du document requis');
+      }
+      return;
+    }
+
+    if (!selectedContestForRequirement) return;
+
+    try {
+      const createdRequirement = await jobService.addDocumentRequirement(selectedContestForRequirement.id, documentRequirementForm);
+      toast.success('Document requis ajouté avec succès');
+      setRequirementModalOpen(false);
+      if (contestToView?.id === selectedContestForRequirement.id) {
+        setJobRequirements((prev) => [...prev, createdRequirement]);
+      }
+      resetDocumentRequirementForm();
+    } catch (error) {
+      console.error('Error adding document requirement:', error);
+      toast.error('Erreur lors de l\'ajout du document requis');
     }
   };
 
@@ -233,8 +312,12 @@ export default function AdminDashboard() {
 
   const handleViewContest = async (contestId: number) => {
     try {
-      const contestDetails = await jobService.getJobById(contestId.toString());
+      const [contestDetails, requirements] = await Promise.all([
+        jobService.getJobById(contestId.toString()),
+        jobService.getDocumentRequirements(contestId),
+      ]);
       setContestToView(contestDetails);
+      setJobRequirements(requirements);
       setViewModalOpen(true);
     } catch (error) {
       console.error('Error fetching contest details:', error);
@@ -244,8 +327,9 @@ export default function AdminDashboard() {
       const contestFromList = contests.find(c => c.id === contestId);
       if (contestFromList) {
         setContestToView(contestFromList);
-        setViewModalOpen(true);
       }
+      setJobRequirements([]);
+      setViewModalOpen(true);
     }
   };
 
@@ -608,6 +692,10 @@ export default function AdminDashboard() {
                                         <Eye className="mr-2 h-4 w-4" />
                                         Voir les détails
                                       </DropdownMenuItem>
+                                      <DropdownMenuItem onClick={() => openDocumentRequirementModal(contest)}>
+                                        <FileText className="mr-2 h-4 w-4" />
+                                        Ajouter papier requis
+                                      </DropdownMenuItem>
                                       <DropdownMenuItem onClick={() => handleEditContest(contest)}>
                                         <Pencil className="mr-2 h-4 w-4" />
                                         Modifier
@@ -811,33 +899,7 @@ export default function AdminDashboard() {
               />
             </div>
 
-            {/* Papier Requis Checkbox */}
-            <div className="flex items-center gap-4">
-              <Label htmlFor="papierRequis" className="flex items-center gap-2 mb-0">
-                <Input
-                  id="papierRequis"
-                  name="papierRequis"
-                  type="checkbox"
-                  checked={formData.papierRequis}
-                  onChange={handleInputChange}
-                  className="w-4 h-4 mr-2"
-                />
-                Papier requis ?
-              </Label>
-              {formData.papierRequis && (
-                <div className="flex-1">
-                  <Label htmlFor="descriptionPapier" className="mb-0">Description du papier requis</Label>
-                  <Input
-                    id="descriptionPapier"
-                    name="descriptionPapier"
-                    value={formData.descriptionPapier}
-                    onChange={handleInputChange}
-                    required={formData.papierRequis}
-                    className="ml-2"
-                  />
-                </div>
-              )}
-            </div>
+           
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
@@ -930,6 +992,74 @@ export default function AdminDashboard() {
             </div>
           </form>
         </div>
+      </Modal>
+
+      {/* Document Requirement Modal */}
+      <Modal
+        isOpen={requirementModalOpen}
+        onClose={() => {
+          setRequirementModalOpen(false);
+          resetDocumentRequirementForm();
+        }}
+        title={selectedRequirementForEdit ? 'Modifier le document requis' : 'Ajouter un document requis'}
+        description={selectedRequirementForEdit
+          ? `Modifier le document requis pour le concours ${contestToView?.title ?? ''}`
+          : selectedContestForRequirement
+            ? `Ajouter un document requis pour le concours ${selectedContestForRequirement.title}`
+            : 'Ajouter un document requis à un concours'}
+      >
+        <form onSubmit={handleSubmitDocumentRequirement} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="papierRequis">Papier requis</Label>
+            <select
+              id="papierRequis"
+              name="papierRequis"
+              value={documentRequirementForm.papierRequis ? 'true' : 'false'}
+              onChange={(e) => setDocumentRequirementForm(prev => ({
+                ...prev,
+                papierRequis: e.target.value === 'true',
+                descriptionPapier: e.target.value === 'true' ? prev.descriptionPapier : ''
+              }))}
+              className="w-full px-3 py-2 border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
+            >
+              <option value="true">Oui</option>
+              <option value="false">Non</option>
+            </select>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="descriptionPapier">Description du papier requis</Label>
+            <textarea
+              id="descriptionPapier"
+              name="descriptionPapier"
+              value={documentRequirementForm.descriptionPapier}
+              onChange={(e) => setDocumentRequirementForm(prev => ({
+                ...prev,
+                descriptionPapier: e.target.value,
+              }))}
+              className="w-full min-h-[80px] px-3 py-2 border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
+              required={documentRequirementForm.papierRequis}
+              placeholder="Copie de la carte d'identité, passeport, etc."
+            />
+            <p className="text-xs text-muted-foreground">
+              {documentRequirementForm.papierRequis
+                ? 'Cette description est requise lorsque le papier est nécessaire.'
+                : 'Vous pouvez laisser ce champ vide si aucun papier n’est requis.'}
+            </p>
+          </div>
+
+          <div className="flex justify-end gap-3 pt-4">
+            <Button type="button" variant="outline" onClick={() => {
+              setRequirementModalOpen(false);
+              resetDocumentRequirementForm();
+            }}>
+              Annuler
+            </Button>
+            <Button type="submit">
+              {selectedRequirementForEdit ? 'Mettre à jour' : 'Enregistrer'}
+            </Button>
+          </div>
+        </form>
       </Modal>
 
       {/* Edit User Modal */}
@@ -1071,20 +1201,51 @@ export default function AdminDashboard() {
             </div>
 
             {/* Papier requis et description du papier */}
-            {typeof contestToView.papierRequis !== 'undefined' && (
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-muted-foreground">Papier requis</Label>
-                <p className="font-semibold">
-                  {contestToView.papierRequis ? 'Oui' : 'Non'}
-                </p>
+            {jobRequirements.length > 0 ? (
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label className="text-sm font-medium text-muted-foreground">Documents requis</Label>
+                  <div className="space-y-2 rounded-md border border-border bg-background p-4">
+                    {jobRequirements.map((requirement) => (
+                      <div key={requirement.id} className="rounded-md bg-muted p-3">
+                        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                          <div>
+                            <p className="font-semibold">
+                              {requirement.descriptionPapier || 'Document requis'}
+                            </p>
+                            <p className="text-sm text-muted-foreground">
+                              {requirement.papierRequis ? 'Obligatoire' : 'Facultatif'}
+                            </p>
+                          </div>
+                          <div className="flex flex-wrap gap-2 sm:ml-4">
+                            <Button
+                              size="sm"
+                              variant="outline"
+                              className="w-full sm:w-auto"
+                              onClick={() => openEditDocumentRequirementModal(requirement)}
+                            >
+                              <Pencil className="mr-2 h-3.5 w-3.5" />
+                              Modifier
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="destructive"
+                              className="w-full sm:w-auto"
+                              onClick={() => handleDeleteDocumentRequirement(requirement.id)}
+                            >
+                              Supprimer
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-            )}
-            {contestToView.papierRequis && contestToView.descriptionPapier && (
+            ) : (
               <div className="space-y-2">
-                <Label className="text-sm font-medium text-muted-foreground">Description du papier requis</Label>
-                <p className="font-semibold">
-                  {contestToView.descriptionPapier}
-                </p>
+                <Label className="text-sm font-medium text-muted-foreground">Documents requis</Label>
+                <p className="font-semibold">Aucun document requis</p>
               </div>
             )}
 
@@ -1128,64 +1289,29 @@ export default function AdminDashboard() {
             </div>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="editDescription">Description</Label>
-            <textarea
-              id="editDescription"
-              name="description"
-              value={editContestFormData.description}
-              onChange={handleEditContestInputChange}
-              className="w-full min-h-[80px] px-3 py-2 border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
-              required
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="editRequirements">Prérequis</Label>
-            <textarea
-              id="editRequirements"
-              name="requirements"
-              value={editContestFormData.requirements}
-              onChange={handleEditContestInputChange}
-              className="w-full min-h-[80px] px-3 py-2 border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
-              required
-            />
-          </div>
-
-          {/* Papier Requis + Description Papier (edit modal) */}
-          <div className="flex items-center gap-4">
-            <Label htmlFor="editPapierRequis" className="flex items-center gap-2 mb-0">
-              <Input
-                id="editPapierRequis"
-                name="papierRequis"
-                type="checkbox"
-                checked={Boolean((contestToEdit as any)?.papierRequis)}
-                onChange={e => {
-                  setEditContestFormData(prev => ({
-                    ...prev,
-                    papierRequis: (e.target as HTMLInputElement).checked
-                  }));
-                }}
-                className="w-4 h-4 mr-2"
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="editDescription">Description</Label>
+              <textarea
+                id="editDescription"
+                name="description"
+                value={editContestFormData.description}
+                onChange={handleEditContestInputChange}
+                className="w-full min-h-[120px] px-3 py-2 border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
+                required
               />
-              Papier requis ?
-            </Label>
-            {Boolean((contestToEdit as any)?.papierRequis) && (
-              <div className="flex-1">
-                <Label htmlFor="editDescriptionPapier" className="mb-0">Description du papier requis</Label>
-                <Input
-                  id="editDescriptionPapier"
-                  name="descriptionPapier"
-                  value={(editContestFormData as any).descriptionPapier || ''}
-                  onChange={e => setEditContestFormData(prev => ({
-                    ...prev,
-                    descriptionPapier: e.target.value
-                  }))}
-                  required={Boolean((contestToEdit as any)?.papierRequis)}
-                  className="ml-2"
-                />
-              </div>
-            )}
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="editRequirements">Prérequis</Label>
+              <textarea
+                id="editRequirements"
+                name="requirements"
+                value={editContestFormData.requirements}
+                onChange={handleEditContestInputChange}
+                className="w-full min-h-[120px] px-3 py-2 border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
+                required
+              />
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1213,7 +1339,7 @@ export default function AdminDashboard() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="editType">Type</Label>
               <select
@@ -1229,6 +1355,24 @@ export default function AdminDashboard() {
                 <option value="INTERNSHIP">Stage</option>
               </select>
             </div>
+            <div className="space-y-2">
+              <Label htmlFor="editCompetitionStatus">Statut du concours</Label>
+              <select
+                id="editCompetitionStatus"
+                name="competitionStatus"
+                value={editContestFormData.competitionStatus}
+                onChange={handleEditContestInputChange}
+                className="w-full px-3 py-2 border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
+              >
+                <option value="NOT_STARTED">À venir</option>
+                <option value="OPEN">Ouvert</option>
+                <option value="CLOSED">Fermé</option>
+                <option value="UPCOMING">Bientôt disponible</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="editCompetitionDate">Date du concours</Label>
               <Input
@@ -1251,22 +1395,6 @@ export default function AdminDashboard() {
                 required
               />
             </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="editCompetitionStatus">Statut du concours</Label>
-            <select
-              id="editCompetitionStatus"
-              name="competitionStatus"
-              value={editContestFormData.competitionStatus}
-              onChange={handleEditContestInputChange}
-              className="w-full px-3 py-2 border border-input bg-background text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-md"
-            >
-              <option value="NOT_STARTED">À venir</option>
-              <option value="OPEN">Ouvert</option>
-              <option value="CLOSED">Fermé</option>
-              <option value="UPCOMING">Bientôt disponible</option>
-            </select>
           </div>
 
           <div className="flex justify-end gap-3 pt-4">

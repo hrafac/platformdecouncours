@@ -86,6 +86,7 @@ export interface ApplicationFormData {
   additionalInfo?: string;
   expectedSalary?: string;
   availabilityDate?: string;
+  [key: string]: any;
 }
 
 export interface Candidate {
@@ -126,6 +127,13 @@ export interface JobOffer {
   competitionStatus: string | null;
   papierRequis?: boolean;
   descriptionPapier?: string;
+}
+
+export interface DocumentRequirement {
+  id: number;
+  papierRequis: boolean;
+  descriptionPapier: string;
+  jobOfferId: number;
 }
 
 export interface JobApplication {

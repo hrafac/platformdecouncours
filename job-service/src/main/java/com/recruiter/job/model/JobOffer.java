@@ -1,9 +1,12 @@
 package com.recruiter.job.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -31,8 +34,8 @@ public class JobOffer {
     private LocalTime competitionTime;
    
     private String competitionStatus; // "NOT_STARTED", "IN_PROGRESS", "COMPLETED"
-    // Ajout pour gestion de papier requis
-    private Boolean papierRequis; // true si un papier est requis, false sinon
-    @Column(columnDefinition = "TEXT")
-    private String descriptionPapier; // description du papier demandé
+
+    @OneToMany(mappedBy = "jobOffer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<DocumentRequirement> documentRequirements = new ArrayList<>();
 }

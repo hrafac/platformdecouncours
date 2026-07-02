@@ -1,4 +1,4 @@
-import type { JobOffer } from '@/types';
+import type { DocumentRequirement, JobOffer } from '@/types';
 
 const API_BASE_URL = 'http://localhost:8080/api';
 
@@ -54,6 +54,51 @@ export const jobService = {
     });
     if (!response.ok) {
       throw new Error('Failed to create job');
+    }
+    return response.json();
+  },
+
+  async addDocumentRequirement(jobId: number, requirement: { papierRequis: boolean; descriptionPapier: string; }): Promise<DocumentRequirement> {
+    const response = await fetch(`${API_BASE_URL}/jobs/${jobId}/requirements`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requirement),
+    });
+    if (!response.ok) {
+      throw new Error('Failed to add document requirement');
+    }
+    return response.json();
+  },
+
+  async updateDocumentRequirement(requirementId: number, requirement: { papierRequis: boolean; descriptionPapier: string; }): Promise<DocumentRequirement> {
+    const response = await fetch(`${API_BASE_URL}/requirements/${requirementId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requirement),
+    });
+    if (!response.ok) {
+      throw new Error('Failed to update document requirement');
+    }
+    return response.json();
+  },
+
+  async deleteDocumentRequirement(requirementId: number): Promise<void> {
+    const response = await fetch(`${API_BASE_URL}/requirements/${requirementId}`, {
+      method: 'DELETE',
+    });
+    if (!response.ok) {
+      throw new Error('Failed to delete document requirement');
+    }
+  },
+
+  async getDocumentRequirements(jobId: number): Promise<DocumentRequirement[]> {
+    const response = await fetch(`${API_BASE_URL}/jobs/${jobId}/requirements`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch document requirements');
     }
     return response.json();
   },

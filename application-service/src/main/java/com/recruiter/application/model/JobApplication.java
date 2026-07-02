@@ -1,8 +1,12 @@
 package com.recruiter.application.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -31,8 +35,53 @@ public class JobApplication {
     private String expectedSalary;   // Salaire attendu
     private String availabilityDate; // Date de disponibilité
 
-    // Champs pour le document de concours
-    private String contestDocumentFileName; // Nom du fichier du document de concours
-    @Column(columnDefinition = "TEXT")
-    private String contestDocumentContent;  // Contenu du document de concours (optionnel)
+    @OneToMany(mappedBy = "jobApplication", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<ContestDocument> contestDocuments = new ArrayList<>();
+
+    @Transient
+    public String getContestDocumentFileName() {
+        if (contestDocuments == null || contestDocuments.isEmpty()) {
+            return null;
+        }
+        return contestDocuments.get(0).getFileName();
+    }
+
+    @Transient
+    public void setContestDocumentFileName(String contestDocumentFileName) {
+        if (contestDocuments == null) {
+            contestDocuments = new ArrayList<>();
+        }
+        if (contestDocuments.isEmpty()) {
+            ContestDocument document = new ContestDocument();
+            document.setFileName(contestDocumentFileName);
+            document.setJobApplication(this);
+            contestDocuments.add(document);
+        } else {
+            contestDocuments.get(0).setFileName(contestDocumentFileName);
+        }
+    }
+
+    @Transient
+    public String getContestDocumentContent() {
+        if (contestDocuments == null || contestDocuments.isEmpty()) {
+            return null;
+        }
+        return contestDocuments.get(0).getContent();
+    }
+
+    @Transient
+    public void setContestDocumentContent(String contestDocumentContent) {
+        if (contestDocuments == null) {
+            contestDocuments = new ArrayList<>();
+        }
+        if (contestDocuments.isEmpty()) {
+            ContestDocument document = new ContestDocument();
+            document.setContent(contestDocumentContent);
+            document.setJobApplication(this);
+            contestDocuments.add(document);
+        } else {
+            contestDocuments.get(0).setContent(contestDocumentContent);
+        }
+    }
 }
