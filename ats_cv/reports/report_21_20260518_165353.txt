@@ -1,0 +1,36 @@
+Candidature #21
+Candidat: Jean1 Dupont
+Poste: Offre d’emploi – Développeur Web - Tech Corp
+Date: 2026-05-18 16:53:53.458798
+Score ATS: 90/100
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+- Domaine métier du CV : IT / Développement Web (avec des compétences en Systèmes & DevOps)
+- Domaine métier de l'offre : IT / Développement Web
+- Sont-ils compatibles ? OUI
+
+**2. Analyse détaillée**
+
+**Résumé du CV**
+Achraf Melfout est un Ingénieur en Systèmes d'Information diplômé, doté d'une passion affirmée pour le développement web, les systèmes et le DevOps. Il recherche une opportunité pour appliquer ses compétences techniques étendues, incluant des frameworks web (Laravel, React), des bases de données (MySQL) et des outils DevOps (Docker, Grafana). Son parcours est jalonné de stages pertinents en développement web et supervision IT, ainsi que de projets personnels conséquents démontrant sa capacité à concevoir et réaliser des applications complexes.
+
+**Score ATS: 90/100**
+
+**Points forts**
+*   **Formation Parfaitement Alignée:** Le diplôme d'Ingénieur en Systèmes d'Information (Bac+5) correspond directement aux exigences de l'offre ("Systèmes d’information", "Développement informatique").
+*   **Compétences Techniques Cœur de Cible:** Excellente maîtrise des technologies clés demandées : HTML/CSS, JavaScript, PHP/Laravel, React, MySQL, Git. Ces compétences sont appuyées par des expériences concrètes en stage et de nombreux projets.
+*   **Expérience en Développement Web:** Le stage chez RMA Assurance en "Développement Web" avec Laravel et MySQL, ainsi que la participation au développement d'une plateforme d'e-learning chez ZiryabTec, sont directement pertinents.
+*   **Portfolio de Projets Solide:** Les projets personnels (Gestion Cabinet Médical, Gestion Cabinet Avocat, Gestion Stock & E-commerce) et le PFE (plateforme de gestion des concours avec système ATS intelligent) démontrent une forte capacité à concevoir, développer et livrer des applications web fonctionnelles.
+*   **Polyvalence et Curiosité Technologique:** La passion pour les systèmes et le DevOps, ainsi que la maîtrise d'outils comme Docker, Linux, Grafana et Prometheus, sont des atouts significatifs pour une entreprise tech moderne. Les compétences en Python/ML (Scikit-learn, TensorFlow) mettent en évidence une capacité d'apprentissage rapide et une ouverture vers d'autres domaines technologiques.
+*   **Profil Proactif:** La réalisation de multiples projets personnels et l'exploration de diverses technologies montrent une grande autonomie et un esprit d'initiative.
+
+**Points faibles**
+*   **Expérience Limitée en Java Spring Boot:** Bien que le candidat maîtrise Java et l'ait utilisé dans un projet (JavaFX), l'expérience spécifique et la maîtrise de Spring Boot, mentionnées comme technologie clé dans l'offre, ne sont pas clairement détaillées ou démontrées pour le développement web.
+*   **Détail des API REST:** La compétence en développement d'API REST est requise mais n'est pas explicitement mise en avant dans les expériences ou compétences du CV, même si elle est souvent implicite dans le développement avec des frameworks comme Laravel.
+*   **Manque de détails sur les soft skills:** Les qualités comme le travail en équipe, l'esprit d'analyse et la résolution de problèmes sont mentionnées dans l'offre, mais le CV ne fournit pas d'exemples concrets ou de contextes où ces qualités ont été particulièrement mises en œuvre, au-delà de l'implication dans des projets.
+
+**Recommandation finale**
+Ce candidat est **hautement qualifié et un excellent fit** pour le poste de Développeur Web. Sa formation, son expérience concrète en développement web avec les technologies cibles (Laravel, React, MySQL), et son impressionnant portfolio de projets personnels le positionnent comme un candidat très prometteur. Ses compétences en DevOps et sa curiosité technologique ajoutent une valeur considérable à son profil. Malgré un besoin potentiel de monter en compétence sur Spring Boot, sa capacité d'apprentissage et sa motivation sont des indicateurs forts de succès.
+
+**Recommandation: RECRUTER**

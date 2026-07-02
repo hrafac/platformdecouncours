@@ -1,0 +1,14 @@
+Candidature #22
+Candidat: Jean1 Dupont
+Poste: Offres d’emploi et concours en économie - marsa maroc
+Date: 2026-05-17 20:44:25.810770
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+- Domaine métier du CV : Informatique (Développement Web, Administration Systèmes & Réseaux, DevOps)
+- Domaine métier de l'offre : Économie, Gestion, Finance, Comptabilité, Administration
+- Sont-ils compatibles ? NON
+
+---
+
+❌ INCOMPATIBILITÉ DE DOMAINE : Ce CV est dans le domaine **Informatique (Développement / Systèmes)** alors que l'offre est dans **Économie, Gestion, Finance, Comptabilité, Administration**. Même avec un bon score technique, ce candidat ne convient pas pour ce poste.

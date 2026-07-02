@@ -1,0 +1,35 @@
+Candidature #21
+Candidat: Jean1 Dupont
+Poste: Offre d’emploi – Développeur Web - Tech Corp
+Date: 2026-05-17 20:52:14.724780
+Score ATS: 88/100
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+- Domaine métier du CV : IT - Développement Logiciel / Web
+- Domaine métier de l'offre : IT - Développement Web
+- Sont-ils compatibles ? OUI
+
+**2. Analyse détaillée :**
+
+**Résumé du CV:**
+Le résumé du CV est clair et pertinent. Le candidat se présente comme un Ingénieur en Systèmes d'Information passionné par le développement web, les systèmes et le DevOps, recherchant une opportunité dans le domaine informatique. Cette description correspond bien aux attentes générales d'un poste de développeur web junior/mid, montrant à la fois un alignement avec le développement web et une curiosité pour des domaines connexes comme le DevOps, ce qui est un plus dans les environnements de développement modernes.
+
+**Score ATS: 88/100**
+
+**Points forts:**
+*   **Formation très pertinente:** Le diplôme d'Ingénieur en Systèmes d'Information (Bac+5) est parfaitement en adéquation avec les exigences de l'offre, qui mentionne explicitement "Systèmes d’information" comme formation admissible. Le DUT en Administration Systèmes & Réseaux est également une base solide.
+*   **Expérience concrète en développement web:** Le candidat a réalisé plusieurs stages et un PFE directement liés au développement d'applications web, utilisant des technologies clés comme Laravel et MySQL, ce qui est une excellente correspondance avec les missions et technologies de l'offre.
+*   **Maîtrise des technologies clés de l'offre:** Le CV met en avant une forte maîtrise de HTML/CSS/JavaScript, PHP/Laravel, MySQL, Git/GitHub et React, qui sont tous des piliers de la stack technique recherchée par l'entreprise.
+*   **Compétences complémentaires solides:** Les connaissances en Docker, Linux, Grafana et Prometheus sont des atouts précieux pour un développeur web moderne, notamment pour les aspects de déploiement et de supervision (DevOps), même si le poste est centré sur le développement.
+*   **Projets personnels démontrant l'autonomie et l'initiative:** Les projets de gestion de cabinets médicaux, avocats, stock/e-commerce et jeu Quiz JavaFX témoignent d'une capacité à concevoir et développer des applications complètes, renforçant l'expérience acquise en stage.
+*   **Motivation et adaptabilité:** Le profil exprime une passion pour le développement web et les systèmes, suggérant une bonne capacité d'apprentissage rapide, une qualité recherchée dans l'offre.
+
+**Points faibles:**
+*   **Expérience professionnelle à temps plein absente:** Bien que les stages et projets soient très pertinents, le CV ne présente pas d'expérience en CDI/CDD à temps plein, ce qui est une distinction importante par rapport à une expérience professionnelle structurée.
+*   **Maîtrise de Java/Spring Boot moins détaillée:** L'offre mentionne Java/Spring Boot comme technologie clé. Le candidat mentionne Java et un projet JavaFX, mais l'expérience spécifique avec Spring Boot n'est pas explicitement décrite, ce qui pourrait être un léger manque par rapport aux attentes.
+*   **Expérience API REST implicite, mais non explicite:** Le développement avec Laravel implique souvent l'utilisation d'API REST, mais une mention spécifique ou un projet centré sur les API REST aurait renforcé ce point demandé par l'offre.
+*   **Compétences moins pertinentes pour le poste:** La mention de compétences en Python, Scikit-learn, TensorFlow, OpenCV, Pandas et NumPy, bien que montrant une polyvalence, ne sont pas directement sollicitées par le poste de développeur web et peuvent légèrement diluer le focus du CV.
+
+**Recommandation finale:**
+**Recruter.** Le candidat Achraf Melfout présente un profil très prometteur et fortement aligné avec l'offre de Développeur Web. Sa formation d'ingénieur en Systèmes d'Information, combinée à des expériences significatives en développement web (stages, PFE) et une solide maîtrise des technologies clés (PHP/Laravel, MySQL, React, HTML/CSS/JS, Git), en font un candidat très pertinent. Les quelques points faibles, tels que l'absence d'expérience professionnelle à temps plein et une expérience Java/Spring Boot moins détaillée, sont largement compensés par la qualité de son parcours, ses projets personnels et son potentiel. Il est un excellent match pour l'entreprise Tech Corp.

@@ -1,0 +1,30 @@
+Candidature #38
+Candidat: ahmad
+Poste: Développeur Web Full Stack Junior - TechSolutions Maroc
+Date: 2026-05-20 19:11:36.162472
+Score ATS: 92/100
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+- Domaine métier du CV : IT - Développement Web Full Stack (avec une dimension Systèmes/DevOps)
+- Domaine métier de l'offre : IT - Développement Web Full Stack
+- Sont-ils compatibles ? OUI
+- Si NON → Arrêtez ici et donnez Score ATS = 0/100
+
+**2. Analyse détaillée :**
+- Résumé du CV: Achraf Melfout est un jeune diplômé (Bac+5 en Ingénierie des Systèmes d'Information) affichant une forte passion pour le développement web, les systèmes et le DevOps. Il a acquis des expériences significatives via des stages en développement web (Laravel, MySQL) et en supervision IT, et a réalisé de nombreux projets personnels démontrant une maîtrise des technologies Full Stack.
+
+- Score ATS: 92/100
+
+- Points forts:
+    *   **Alignement Parfait sur les Compétences Clés:** Le candidat maîtrise PHP Laravel (utilisé en stage), HTML, CSS, JavaScript, et a une forte base en Java, MySQL, Git et Docker, couvrant ainsi la quasi-totalité des exigences techniques de l'offre.
+    *   **Expérience Pratique Pertinente:** Ses stages en "Développement Web" (Laravel et MySQL) et sa participation au développement d'une plateforme e-learning sont directement alignés avec le poste.
+    *   **Formation Solide:** Un Bac+5 en Ingénierie des Systèmes d'Information et un DUT en Administration Systèmes & Réseaux offrent une excellente base technique et une polyvalence appréciable.
+    *   **Proactivité et Polyvalence:** Les nombreux projets personnels (Gestion Cabinet Médical, Avocat, Stock & E-commerce, Jeu Quiz JavaFX) témoignent d'une grande curiosité, d'une capacité à développer des solutions complètes et d'une maîtrise de différentes technologies.
+    *   **Compétences DevOps/Systèmes:** Ses connaissances en Grafana, Prometheus, Linux et Docker, ainsi que son DUT en administration systèmes et réseaux, sont un atout pour un développeur Full Stack junior.
+    *   **Profil Junior Idéal:** Sa motivation, ses compétences techniques acquises et sa soif d'apprendre en font un excellent candidat pour un poste junior.
+
+- Points faibles:
+    *   **Spring Boot non explicitement mentionné:** Bien que Java soit maîtrisé et listé, le framework Spring Boot n'apparaît pas directement dans les compétences ou les expériences. Cependant, sa forte base en Java et sa capacité d'apprentissage (démontrée par la diversité de ses compétences) suggèrent qu'il pourrait rapidement monter en compétence sur Spring Boot.
+
+- Recommandation finale: **RECRUTER.** Achraf Melfout est un candidat très solide et fortement compatible avec le poste de Développeur Web Full Stack Junior. Son expérience en Laravel, sa maîtrise des fondamentaux du développement web, ses projets variés et sa formation pertinente en font un profil idéal pour cette opportunité. Le léger manque d'expérience explicite sur Spring Boot est un point mineur pour un poste junior, facilement compensable par sa motivation et ses compétences en Java.

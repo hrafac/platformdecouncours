@@ -1,0 +1,17 @@
+Candidature #30
+Candidat: zouhair
+Poste: Offre d’emploi – Développeur Web - Tech Corp
+Date: 2026-05-18 18:48:21.519728
+Score ATS: 0/100
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+- Domaine métier du CV : Aucune information disponible (le CV est vide).
+- Domaine métier de l'offre : IT / Développement Web
+- Sont-ils compatibles ? NON
+
+**3. Si NON compatible, répondez :**
+❌ INCOMPATIBILITÉ DE DOMAINE : Ce CV est vide et ne contient pas d'informations permettant d'identifier un domaine métier, alors que l'offre est clairement dans le domaine IT / Développement Web. Une comparaison de domaines est donc impossible et mène à une non-compatibilité factuelle.
+
+Score ATS: 0/100
+Recommandation: NE PAS RECRUTER

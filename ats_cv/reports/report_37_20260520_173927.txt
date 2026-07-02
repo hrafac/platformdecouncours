@@ -1,0 +1,43 @@
+Candidature #37
+Candidat: ahmad123
+Poste: Développeur Web Full Stack Junior - TechSolutions Maroc
+Date: 2026-05-20 17:39:27.429715
+Score ATS: 0/100
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+- Domaine métier du CV : IT - Développement Web/Logiciel
+- Domaine métier de l'offre : IT - Développement Web Full Stack
+- Sont-ils compatibles ? OUI
+- Si NON → Arrêtez ici et donnez Score ATS = 0/100
+
+**2. Analyse détaillée (compatible)**
+
+**Résumé du CV**
+Achraf Melfout est un étudiant en Bac+5 Ingénierie Systèmes d'Information, passionné par le développement informatique, le DevOps et l'IA. Il recherche un stage de fin d'études. Son CV met en avant plusieurs stages et projets de développement web (Spring Boot, React, PHP) et une bonne maîtrise des bases de données MySQL, ainsi que des compétences en Docker. Son profil est orienté vers le développement applicatif et web, avec une bonne base technique pour un poste junior.
+
+**Score ATS: 79/100**
+
+**Points forts**
+*   **Formation pertinente :** Bac+5 en Ingénierie Systèmes d'Information, parfaitement aligné avec les exigences d'un poste en informatique.
+*   **Compétences clés en développement :** Très bonne maîtrise de Java et Spring Boot, qui sont des exigences centrales de l'offre, et utilisées dans plusieurs projets concrets.
+*   **Expérience web front-end :** Utilisation de React et mention de JavaScript, impliquant une bonne compréhension de HTML/CSS.
+*   **Bases de données :** Maîtrise de MySQL, une autre exigence clé.
+*   **DevOps :** Connaissance de Docker, un atout majeur pour un développeur moderne.
+*   **Expériences pratiques :** Plusieurs stages et projets concrets qui démontrent l'application de ses compétences en développement web et systèmes.
+*   **Compétences interpersonnelles :** Mention explicite de la capacité de travail en équipe.
+
+**Points faibles**
+*   **Type de poste recherché :** Le candidat recherche un "stage de fin d'études", alors que l'offre est un "CONTRACT" (généralement un poste salarié junior de type CDD/CDI). C'est le point faible le plus critique pour la correspondance directe avec l'offre.
+*   **Technologies manquantes/partielles :**
+    *   Laravel n'est pas explicitement mentionné comme framework, bien que PHP soit listé.
+    *   Bootstrap n'est pas mentionné dans les compétences techniques.
+    *   Git, bien que fondamental pour un développeur, n'est pas explicitement listé dans les compétences techniques.
+    *   PostgreSQL n'est pas mentionné, seulement MySQL et NoSQL.
+
+**Recommandation finale**
+Le profil d'Achraf Melfout est techniquement très solide pour un poste de Développeur Web Full Stack Junior, avec une forte adéquation sur les compétences clés comme Java, Spring Boot, MySQL et Docker. Il possède une formation adéquate et des expériences de projets pertinentes.
+
+Cependant, le principal obstacle est la **recherche explicite d'un "stage de fin d'études"** de la part du candidat, alors que l'offre propose un **"CONTRACT"** (qui implique un poste salarié). Cette divergence fondamentale sur le type de collaboration rend le recrutement direct pour ce poste difficile.
+
+**Recommendation:** NE PAS RECRUTER pour l'offre de "CONTRACT" telle quelle, car le candidat cherche un stage. Si l'entreprise était ouverte à convertir cette offre en stage de fin d'études avec possibilité d'embauche, ce profil serait à considérer très sérieusement et une entrevue serait recommandée pour évaluer les points faibles techniques et la motivation. Dans le cas contraire, il y a une incompatibilité sur le type de contrat.

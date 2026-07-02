@@ -1,0 +1,36 @@
+Candidature #50
+Candidat: ahmad123
+Poste: Concours Informatique – Développement Web - marsa maroc
+Date: 2026-06-10 18:15:58.841883
+Score ATS: 90/100
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+- Domaine métier du CV : Développement Web (Informatique)
+- Domaine métier de l'offre : Développement Web (Informatique)
+- Sont-ils compatibles ? OUI
+
+**2. Analyse détaillée**
+
+**Résumé du CV**
+Achraf Melfout est un Ingénieur en Systèmes d'Information (Bac+5) avec un DUT en Administration Systèmes & Réseaux, passionné par le développement web, les systèmes et le DevOps. Son parcours comprend des stages significatifs en développement web (Laravel, MySQL) et en supervision IT, ainsi qu'un Projet Fin d'Études axé sur une plateforme de gestion de concours. Il possède un large éventail de compétences techniques incluant des frameworks Front-End (React) et Back-End (Laravel, PHP, Java), des bases de données SQL (MySQL), ainsi que des outils DevOps (Docker, Grafana, Prometheus). Ses projets personnels attestent de sa capacité à concevoir et développer des applications complètes.
+
+**Score ATS: 90/100**
+
+**Points forts**
+*   **Adéquation parfaite du domaine:** Le CV est très clairement axé sur le développement web, correspondant directement à l'offre.
+*   **Formation solide et pertinente:** Un diplôme d'ingénieur Bac+5 en Ingénierie des Systèmes d'Information répond idéalement aux exigences de niveau d'étude.
+*   **Compétences techniques clés alignées:** Maîtrise de Laravel, PHP, React, MySQL, JavaScript, HTML/CSS, qui sont toutes des compétences explicitement demandées ou fortement valorisées dans l'offre.
+*   **Expériences concrètes en développement web:** Stages et PFE directement liés au développement d'applications web, avec l'utilisation des technologies requises (Laravel, MySQL).
+*   **Pertinence du PFE:** La conception d'une "plateforme de gestion des concours avec système ATS intelligent" est exceptionnellement pertinente au vu du titre de l'offre ("Concours Informatique").
+*   **Projets personnels diversifiés:** Les nombreux projets de développement d'applications de gestion démontrent une initiative et une capacité à livrer des solutions fonctionnelles.
+*   **Connaissance des API REST implicite:** Bien que non listée comme une compétence isolée, l'utilisation de Laravel et le développement web impliquent fortement une familiarité avec les API REST.
+*   **Maîtrise de Git/GitHub:** Le lien GitHub est un excellent indicateur de bonnes pratiques de développement.
+*   **Polyvalence technique:** Des compétences supplémentaires en DevOps (Docker, Linux, Grafana, Prometheus) et même en Machine Learning (Python, TensorFlow) sont des atouts appréciables pour un développeur.
+
+**Points faibles**
+*   **Mise en avant des soft skills:** Les "Esprit d'équipe" et "capacité d'analyse" sont mentionnés dans l'offre mais ne sont pas explicitement détaillés ou mis en avant dans le CV.
+*   **Le stage en "Supervision IT":** Bien que montrant une polyvalence, cette expérience est moins directement pertinente pour l'aspect pur développement web de l'offre.
+
+**Recommandation finale**
+Ce candidat est un excellent match pour le poste de Développeur Web. Sa formation, ses compétences techniques très pertinentes et ses expériences pratiques, notamment son PFE directement lié à la gestion de concours, le rendent particulièrement qualifié. Il est **FORTEMENT RECOMMANDÉ DE RECRUTER** ou, du moins, de le convier à un entretien afin d'approfondir ses expériences et de valider ses soft skills.

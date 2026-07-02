@@ -1,0 +1,19 @@
+Candidature #39
+Candidat: zouhair
+Poste: hdhdh1 - marsamaroc
+Date: 2026-05-22 16:29:02.763707
+Score ATS: 0/100
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+- Domaine métier du CV : IT / Ingénierie des Systèmes d'Information / Développement
+- Domaine métier de l'offre : Indéterminé / Non spécifié
+- Sont-ils compatibles ? NON
+- Si NON → Arrêtez ici et donnez Score ATS = 0/100
+
+---
+
+❌ INCOMPATIBILITÉ DE DOMAINE : Le domaine métier de l'offre d'emploi est indéterminé en raison d'un manque crucial d'informations dans le titre, la description et les exigences. Il n'est donc pas possible de vérifier la compatibilité avec le domaine "IT / Ingénierie des Systèmes d'Information / Développement" clairement identifié dans le CV. Dans le cadre d'une analyse ATS stricte, l'absence de domaine métier défini pour l'offre rend toute correspondance impossible.
+
+Score ATS: 0/100
+Recommandation: NE PAS RECRUTER

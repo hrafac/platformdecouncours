@@ -1,0 +1,119 @@
+POSTE : Ingénieur Machine Learning Senior
+
+ENTREPRISE : TechInnov Solutions
+LOCALISATION : Casablanca, Maroc (Hybride)
+TYPE : CDI - Temps plein
+EXPÉRIENCE REQUISE : 4-7 ans
+
+=============================================================================
+DESCRIPTION DU POSTE
+=============================================================================
+
+Nous recherchons un Ingénieur Machine Learning Senior passionné pour rejoindre 
+notre équipe R&D. Vous serez responsable du développement et du déploiement 
+de modèles ML à grande échelle pour nos clients dans les secteurs bancaire, 
+assurance et télécoms.
+
+Vous travaillerez sur des projets innovants incluant :
+- Systèmes de recommandation à grande échelle
+- Analyse prédictive pour la détection de fraude
+- Traitement du langage naturel (NLP) pour l'analyse de documents
+- Optimisation des chaînes de valeur industrielles
+
+=============================================================================
+RESPONSABILITÉS
+=============================================================================
+
+1. Concevoir, développer et déployer des modèles de machine learning en production
+2. Mettre en place des pipelines MLOps pour l'automatisation et le monitoring
+3. Collaborer avec les équipes Data Engineering et Data Science
+4. Optimiser les performances des modèles (latence, mémoire, précision)
+5. Participer à la recherche et à l'implémentation de nouvelles approches (LLM, RAG)
+6. Encadrer et former les juniors
+7. Présenter les résultats aux parties prenantes non techniques
+
+=============================================================================
+COMPÉTENCES REQUISES
+=============================================================================
+
+INDISPENSABLES (obligatoires) :
+--------------------------------
+• Python avancé (minimum 4 ans d'expérience)
+• PyTorch ou TensorFlow
+• Machine Learning / Deep Learning (classification, régression, clustering)
+• Traitement du langage naturel (NLP)
+• SQL (requêtes complexes, optimisation)
+• Git et travail en équipe
+• Anglais technique (lecture de documentation, réunions)
+
+IMPORTANTES (fortement souhaitées) :
+-------------------------------------
+• HuggingFace Transformers
+• FastAPI ou Flask pour le déploiement d'APIs
+• Docker et Kubernetes
+• Expérience avec les LLM (GPT, LLaMA, Mistral)
+• RAG (Retrieval-Augmented Generation)
+• LangChain ou LlamaIndex
+
+APPRÉCIÉES (bonus) :
+--------------------
+• Expérience avec AWS (SageMaker, EC2, S3) ou GCP
+• Spark ou traitement de données à grande échelle
+• FAISS ou systèmes de recherche vectorielle
+• MLOps (MLflow, Kubeflow, Airflow)
+• Contribution à des projets open source
+• Publication académique en ML/NLP
+
+=============================================================================
+PROFIL RECHERCHÉ
+=============================================================================
+
+FORMATION :
+• Bac+5 minimum en Informatique, Mathématiques Appliquées, Data Science
+• Master ou Diplôme d'Ingénieur spécialisé IA/ML
+
+SOFT SKILLS :
+• Autonomie et prise d'initiative
+• Excellence en communication (technique et non technique)
+• Leadership et capacité à fédérer une équipe
+• Rigueur scientifique et souci du détail
+• Esprit critique et capacité à challenger les choix techniques
+• Adaptabilité face aux nouvelles technologies
+
+EXPÉRIENCE :
+• 4 à 7 ans d'expérience en industrie (data science/ML)
+• Au moins 2 projets déployés en production
+• Expérience en conduite de projet agile (Scrum, Kanban)
+
+=============================================================================
+CONDITIONS ET AVANTAGES
+=============================================================================
+
+• Salaire : 55 000 - 85 000 MAD mensuel (selon expérience)
+• Prime annuelle sur objectifs (10-15% du salaire annuel)
+• 6 semaines de congés payés par an
+• Télétravail : 3 jours par semaine
+• Forfait mobile et Internet
+• Mutuelle familiale
+• Budget formation annuel : 15 000 MAD
+• Participation aux conférences internationales (NeurIPS, ICML, EMNLP)
+• Carte restaurant (150 MAD/jour)
+
+=============================================================================
+PROCESSUS DE RECRUTEMENT
+=============================================================================
+
+1. Entretien RH (30 min)
+2. Test technique en ligne (2h)
+3. Entretien technique avec l'équipe ML (1h30)
+4. Cas pratique à présenter (à préparer à la maison)
+5. Entretien final avec le CTO (1h)
+
+=============================================================================
+COMMENT POSTULER
+=============================================================================
+
+Envoyez votre CV et lettre de motivation à : recrutement@techinnov.ma
+Référence : ML-ENG-2024
+
+Date limite de candidature : 30 juin 2024

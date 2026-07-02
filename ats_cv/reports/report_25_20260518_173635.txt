@@ -1,0 +1,36 @@
+Candidature #25
+Candidat: Jean1 Dupont
+Poste: Offre d’emploi – Développeur Web - Tech Corp
+Date: 2026-05-18 17:36:35.900762
+Score ATS: 86/100
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+*   Domaine métier du CV : IT - Développement Web, Systèmes & DevOps
+*   Domaine métier de l'offre : IT - Développement Web
+*   Sont-ils compatibles ? OUI
+
+**2. Analyse détaillée**
+
+**Résumé du CV**
+Achraf Melfout est un Ingénieur en Systèmes d'Information, diplômé d'un Bac+5 et titulaire d'un DUT en Administration Systèmes & Réseaux. Passionné par le développement web, les systèmes et le DevOps, il recherche une opportunité dans le domaine informatique pour appliquer ses compétences. Il a réalisé des stages en développement web (Laravel, MySQL) et en supervision IT, ainsi qu'un projet de fin d'études sur une plateforme web. Ses compétences incluent Laravel, PHP, Java, React, MySQL, Docker, Linux, Grafana, Prometheus, Git, JavaScript, HTML/CSS, Python et des outils d'IA. Il a également développé plusieurs applications web en projets personnels.
+
+**Score ATS: 86/100**
+
+**Points forts**
+*   **Formation en parfaite adéquation :** La formation en "Ingénierie des Systèmes d'Information" (Bac+5) est explicitement listée comme une exigence de l'offre, ce qui est un atout majeur. Le DUT en Administration Systèmes & Réseaux complète bien ce profil.
+*   **Expérience significative en développement web :** Les stages chez RMA Assurance ("Développement d'une application web de gestion avec Laravel et MySQL") et ZiryabTec ("développement d'une plateforme d’e-learning") démontrent une expérience concrète et directe avec les technologies clés recherchées. Le PFE confirme cette orientation.
+*   **Maîtrise des technologies cœurs de l'offre :** Le candidat maîtrise HTML/CSS/JavaScript, PHP/Laravel, MySQL, Git, et Java, qui sont tous mentionnés dans les technologies requises. La maîtrise de React est un avantage non négligeable pour les interfaces utilisateur modernes.
+*   **Proactivité et autonomie :** Les multiples projets personnels d'applications web (Gestion Cabinet Médical, Avocat, Stock & E-commerce) attestent d'une forte capacité à initier, concevoir et réaliser des projets de manière autonome, ce qui est une qualité recherchée.
+*   **Profil polyvalent et en phase avec les tendances :** Ses compétences en DevOps (Docker, Linux, Grafana, Prometheus) et ses notions en IA sont des atouts qui peuvent être valorisés dans un environnement de développement moderne.
+*   **Intérêt pour le développement web :** Le profil exprime clairement sa passion pour le développement web.
+
+**Points faibles**
+*   **Manque d'expérience professionnelle à temps plein :** Le parcours est principalement constitué de stages et de projets, ce qui est courant pour un jeune diplômé, mais il n'y a pas d'expérience salariée significative mentionnée.
+*   **Technologies spécifiques non mentionnées :** Bien que Java soit maîtrisé, le framework Spring Boot n'est pas explicitement cité, et la compétence en "Développement d'API REST" n'est pas clairement listée (bien qu'implicite dans les expériences Laravel/React).
+*   **Profil légèrement hétérogène :** L'intérêt pour "le développement web, les systèmes et le DevOps" ainsi que des compétences en IA, même s'ils sont des atouts, peuvent parfois amener à se questionner sur le focus principal du candidat pour un poste de développeur web pur.
+
+**Recommandation finale**
+Achraf Melfout est un candidat **fortement compatible** avec le poste de Développeur Web. Sa formation, ses expériences de stage et ses projets personnels sont très bien alignés avec les exigences de l'offre, notamment en termes de technologies (Laravel, MySQL, JavaScript, HTML/CSS). Malgré un manque d'expérience professionnelle longue durée, sa proactivité et la pertinence de ses compétences techniques en font un profil très prometteur.
+
+**Recommandation: RECRUTER**

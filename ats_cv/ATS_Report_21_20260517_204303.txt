@@ -1,0 +1,52 @@
+Candidature #21
+Candidat: Jean1 Dupont
+Poste: Offre d’emploi – Développeur Web - Tech Corp
+Date: 2026-05-17 20:43:03.255925
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+- Domaine métier du CV : Développement Web / Développement Logiciel IT
+- Domaine métier de l'offre : Développement Web / Développement Logiciel IT
+- Sont-ils compatibles ? OUI
+
+**2. Analyse détaillée**
+
+**Résumé du CV**
+Achraf Melfout est un Ingénieur en Systèmes d'Information (Bac+5) avec une formation complémentaire en Administration Systèmes & Réseaux. Il se positionne comme un profil passionné par le développement web, les systèmes et le DevOps, recherchant une opportunité dans le domaine informatique. Son expérience se compose de stages significatifs, notamment en développement web avec Laravel et MySQL, et en participation à une plateforme e-learning. Il a également réalisé plusieurs projets personnels de développement d'applications web et un Projet de Fin d'Études (PFE) orienté vers la conception d'une plateforme avec système ATS intelligent. Ses compétences techniques sont solides et diversifiées, couvrant la plupart des technologies requises par l'offre, complétées par des connaissances en DevOps et Data Science.
+
+**Score ATS (/100)** : 90/100
+
+*   **Formation (10/10)**: La formation d'Ingénieur Systèmes d'Information (Bac+5) est directement mentionnée et acceptée dans les prérequis de l'offre. Le DUT Administration Systèmes & Réseaux est un atout supplémentaire.
+*   **Expériences (20/20)**: Le stage chez RMA Assurance en "Développement d'une application web de gestion avec Laravel et MySQL" est un match parfait avec les exigences techniques (Laravel, MySQL). La "Participation au développement d'une plateforme d’e-learning intelligente" et le PFE sur une "plateforme de gestion des concours avec systéme ATS intelligent" sont également des expériences très pertinentes en développement web/logiciel.
+*   **Compétences techniques (40/40)**:
+    *   **HTML, CSS, JavaScript**: Maîtrise affichée.
+    *   **PHP / Laravel**: Explicitement listé dans les compétences et expériences (RMA Assurance). **Excellent match**.
+    *   **Java / Spring Boot**: Java est listé comme compétence et utilisé dans un projet (Jeu Quiz JavaFX). La maîtrise de Java facilite l'apprentissage de Spring Boot, même s'il n'est pas directement mentionné.
+    *   **MySQL / PostgreSQL**: MySQL est listé et utilisé dans l'expérience RMA Assurance. **Excellent match**.
+    *   **Git & GitHub**: Git est listé et un profil GitHub est fourni. **Excellent match**.
+    *   **API REST**: Non explicitement listé comme "API REST" mais l'expérience de développement d'applications web complexes et de plateformes (PFE) implique fortement la connaissance et l'utilisation des API REST.
+    *   **Frameworks web (Laravel, React, Spring Boot…)**: Laravel et React sont explicitement listés.
+    *   **Bases de données SQL**: MySQL est explicitement listé.
+    *   Les compétences supplémentaires en DevOps (Docker, Linux, Grafana, Prometheus) et en Data Science sont des atouts démontrant la curiosité et la capacité d'apprentissage.
+*   **Qualités recherchées (15/15)**:
+    *   **Esprit d’analyse et de résolution de problèmes**: Démontré par la conception et la réalisation de multiples projets complexes et d'un PFE.
+    *   **Travail en équipe**: Implicite dans les stages et la mention de "collaboration avec l’équipe de développement" dans l'offre.
+    *   **Autonomie et organisation**: Clairement illustrée par la gestion et la diversité des projets personnels.
+    *   **Capacité d’apprentissage rapide**: Évidente par la maîtrise de technologies variées (Web, DevOps, Data Science) et la passion exprimée pour différents domaines IT.
+*   **Autres (5/5)**: Présence d'un profil GitHub, maîtrise de trois langues (Arabe, Français, Anglais).
+
+**Points forts**
+*   **Adéquation de la formation:** Le diplôme d'Ingénieur en Systèmes d'Information est parfaitement aligné avec les attentes de l'offre.
+*   **Expérience pratique pertinente:** Le candidat a déjà développé des applications web avec Laravel et MySQL, des technologies clés pour le poste.
+*   **Maîtrise technique large et profonde:** Excellente couverture des technologies demandées (PHP/Laravel, MySQL, Java, React, Git, HTML/CSS, JavaScript) et des compétences additionnelles en DevOps très appréciables.
+*   **Projets personnels variés et significatifs:** Démontre une forte initiative, une capacité à appliquer les compétences et un réel intérêt pour le développement.
+*   **Motivé et polyvalent:** La passion pour le développement web et l'intérêt pour les systèmes et le DevOps montrent un profil dynamique et adaptable.
+*   **Profil GitHub actif et multilingue.**
+
+**Points faibles**
+*   **Expérience professionnelle courte durée:** Le CV présente des stages et des projets mais pas encore d'expérience en CDI/CDD à temps plein sur plusieurs années, ce qui est typique pour un jeune diplômé.
+*   **Spring Boot non explicitement mentionné:** Bien que Java soit maîtrisé, le framework Spring Boot n'est pas directement cité. Cependant, cela ne devrait pas être un obstacle majeur pour un développeur Java expérimenté avec d'autres frameworks.
+*   **API REST non explicitement listée:** Bien que son utilisation soit implicite dans les expériences de développement web.
+
+**Recommandation finale**
+**RECRUTER**

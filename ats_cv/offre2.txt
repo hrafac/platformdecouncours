@@ -1,0 +1,87 @@
+POSTE : Ingénieur Machine Learning Junior / Développeur IA
+
+ENTREPRISE : SmartTech Solutions
+LOCALISATION : Casablanca, Maroc (Hybride)
+TYPE : CDI / Stage pré-embauche
+EXPÉRIENCE REQUISE : 0 à 2 ans
+
+=============================================================================
+DESCRIPTION DU POSTE
+=============================================================================
+
+SmartTech Solutions recrute un Ingénieur Machine Learning Junior pour rejoindre
+son équipe technique.
+
+Le candidat participera au développement d’applications intelligentes combinant
+développement web et intelligence artificielle.
+
+Projets principaux :
+- Analyse de données et aide à la décision
+- Développement d’applications web intelligentes
+- Systèmes de recommandation
+- Chatbots et NLP (Traitement du langage naturel)
+
+=============================================================================
+RESPONSABILITÉS
+=============================================================================
+
+1. Développer des applications web (Back-End et Front-End)
+2. Implémenter des modèles de Machine Learning avec Python
+3. Concevoir des API REST avec Spring Boot ou Laravel
+4. Intégrer des fonctionnalités IA (chatbot, recommandation, analyse)
+5. Manipuler des bases de données (MySQL, PostgreSQL)
+6. Collaborer avec l’équipe technique
+7. Participer à l’amélioration continue des applications
+
+=============================================================================
+COMPÉTENCES REQUISES
+=============================================================================
+
+INDISPENSABLES :
+----------------
+- Java (JEE / Spring Boot)
+- Python (Machine Learning)
+- React.js ou développement Front-End
+- API REST
+- Bases de données (MySQL / PostgreSQL)
+- Git / GitHub
+
+IMPORTANTES :
+-------------
+- Laravel
+- NLP ou chatbot
+- Systèmes de recommandation
+- Docker (notions)
+- Projets combinant IA + Web
+
+=============================================================================
+PROFIL RECHERCHÉ
+=============================================================================
+
+FORMATION :
+- Étudiant en cycle d’ingénieur ou jeune diplômé en informatique
+
+EXPÉRIENCE :
+- Stage ou projet en développement ou IA
+
+SOFT SKILLS :
+- Curiosité et apprentissage rapide
+- Esprit d’équipe
+- Autonomie
+- Motivation pour l’IA
+
+=============================================================================
+CONDITIONS
+=============================================================================
+
+- Salaire : 6 000 à 10 000 MAD (ou indemnité de stage)
+- Possibilité d’embauche après stage
+- Encadrement technique
+- Projets innovants en IA
+
+=============================================================================
+CANDIDATURE
+=============================================================================
+
+Envoyer CV à : recrutement@smarttech.ma
+Référence : ML-JUNIOR-2026

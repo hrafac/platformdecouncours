@@ -1,0 +1,35 @@
+Candidature #32
+Candidat: zouhair
+Poste: Offre d’emploi – Développeur Web - Tech Corp
+Date: 2026-05-18 18:49:43.535482
+Score ATS: 95/100
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+
+*   Domaine métier du CV : Développement Informatique / Web
+*   Domaine métier de l'offre : Développement Web / Informatique
+*   Sont-ils compatibles ? OUI
+
+**2. Analyse détaillée**
+
+*   **Résumé du CV**
+    Le profil du candidat est excellent et très pertinent. Il se positionne comme un ingénieur passionné par le développement web et les systèmes, cherchant une opportunité pour mettre en pratique ses compétences. Cette présentation correspond parfaitement à l'esprit de l'offre et à la nature du poste de développeur web.
+
+*   **Score ATS: 95/100**
+
+*   **Points forts**
+    *   **Formation de haut niveau et pertinente:** Ingénieur Bac+5 en Ingénierie des Systèmes d'Information, en parfaite adéquation avec les exigences.
+    *   **Expérience directe et concrète en Développement Web:** Le stage chez RMA Assurance avec Laravel et MySQL est une correspondance quasi parfaite avec les technologies et missions de l'offre.
+    *   **Maîtrise des technologies clés de l'offre:** Le candidat démontre une solide maîtrise de HTML/CSS/JavaScript, PHP/Laravel, MySQL, Git et React. La connaissance de Java est également présente, ce qui est un atout pour le volet Spring Boot de l'offre.
+    *   **Projets personnels variés et applicatifs:** Les nombreux projets listés (gestion de cabinet médical/avocat, stock, e-commerce) témoignent d'une forte autonomie, d'une capacité à concevoir et développer des applications complètes, et d'une passion pour le métier.
+    *   **Compétences complémentaires en Systèmes/DevOps:** La connaissance de Docker, Linux, Grafana et Prometheus est un plus qui dénote une compréhension plus large de l'environnement de production.
+    *   **Profil proactif:** Le lien GitHub et la diversité des technologies et projets montrent une réelle curiosité et une capacité d'apprentissage rapide.
+
+*   **Points faibles**
+    *   Bien que le candidat maîtrise Java, la mention explicite de "Spring Boot" est absente de la liste de ses compétences. Cependant, sa capacité d'apprentissage et sa base solide en Java devraient permettre une montée en compétence rapide.
+    *   La mention de "Développement d'API REST" n'est pas explicitement listée dans les compétences techniques, bien qu'implicite et fortement probable avec la maîtrise de Laravel et le type de projets réalisés.
+
+*   **Recommandation finale**
+    **FORTEMENT RECOMMANDER D'AVANCER.**
+    Ce candidat présente un profil exceptionnel et une correspondance très élevée avec l'offre de Développeur Web. Sa formation, ses expériences pratiques (notamment avec Laravel), sa maîtrise des technologies requises et la richesse de ses projets personnels en font un candidat de choix. Les légers points faibles peuvent être facilement compensés par sa capacité d'apprentissage et sa passion démontrée.

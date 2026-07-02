@@ -1,0 +1,37 @@
+Candidature #26
+Candidat: Jean1 Dupont
+Poste: Offre d’emploi – Développeur Web - Tech Corp
+Date: 2026-05-18 18:08:36.992062
+Score ATS: 90/100
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+- Domaine métier du CV : IT / Développement Web
+- Domaine métier de l'offre : IT / Développement Web
+- Sont-ils compatibles ? OUI
+
+**2. Analyse détaillée**
+
+**Résumé du CV**
+Le profil du candidat indique clairement sa passion pour le développement web et sa recherche d'opportunités dans le domaine informatique, ce qui correspond bien à l'offre. Sa formation en Ingénierie des Systèmes d'Information est également en adéquation avec les exigences. La mention des "systèmes et DevOps" montre une polyvalence, sans pour autant dénaturer le focus principal sur le développement web.
+
+**Score ATS: 90/100**
+
+**Points forts**
+*   **Formation pertinente :** Bac+5 Ingénieur Systèmes d'Information, en parfaite adéquation avec les formations requises (Développement informatique, Génie logiciel, Systèmes d’information).
+*   **Expériences directes en Développement Web :** Deux stages (RMA Assurance, ZiryabTec) et un Projet Fin d'Études (PFE) sont directement liés au développement d'applications web et de plateformes, en utilisant des technologies clés mentionnées dans l'offre (Laravel, MySQL).
+*   **Maîtrise des technologies fondamentales :** Excellente maîtrise de HTML/CSS, JavaScript, PHP et Laravel, ainsi que MySQL, qui sont au cœur des exigences du poste.
+*   **Compétences en gestion de version :** Utilisation de Git et GitHub, essentielle pour le travail en équipe et le déploiement.
+*   **Projets personnels solides :** Les nombreux projets listés démontrent une forte autonomie, une capacité à concevoir et développer des applications complètes, et une mise en pratique des compétences acquises. Certains projets intègrent même l'IA, montrant une curiosité et une capacité d'apprentissage avancée.
+*   **Polyvalence technique :** Bien que l'offre soit axée sur le développement web, la connaissance de Docker, Linux, Grafana et Prometheus (issus de son stage en Supervision IT) est un atout pour la compréhension de l'environnement de déploiement et d'opération.
+*   **Connaissance de React :** Mention de React dans les compétences, un framework web moderne très recherché et mentionné dans l'offre.
+
+**Points faibles**
+*   **Manque de mention explicite de Spring Boot :** Le candidat maîtrise Java, mais Spring Boot n'est pas explicitement cité comme une compétence acquise ou utilisée, alors qu'il fait partie des frameworks mentionnés dans l'offre.
+*   **API REST :** Bien que le développement web moderne l'implique fortement, la "conception et développement d'API REST" n'est pas explicitement listée comme une compétence maîtrisée ou une mission spécifique dans les expériences.
+*   **Base de données SQL :** MySQL est maîtrisé, mais PostgreSQL (également cité dans l'offre) n'est pas mentionné.
+
+**Recommandation finale**
+Le profil du candidat Achraf Melfout présente une excellente adéquation avec l'offre de Développeur Web. Sa formation, ses expériences pratiques en développement web avec des technologies clés comme Laravel et MySQL, et ses nombreux projets personnels démontrent une solide base technique et une réelle passion pour le domaine. Les quelques lacunes identifiées (Spring Boot, API REST explicite) peuvent être facilement comblées compte tenu de sa capacité d'apprentissage et de sa maîtrise de Java. Ce candidat mérite clairement d'être retenu pour la prochaine étape du processus de recrutement.
+
+Recommandation: **À RECRUTER**

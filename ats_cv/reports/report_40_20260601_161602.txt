@@ -1,0 +1,36 @@
+Candidature #40
+Candidat: ahmad123
+Poste: Développeur Web Full Stack Junior - TechSolutions Maroc
+Date: 2026-06-01 16:16:02.521309
+Score ATS: 80/100
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+- Domaine métier du CV : IT - Développement Web (avec des notions en Systèmes et DevOps)
+- Domaine métier de l'offre : IT - Développement Web Full Stack
+- Sont-ils compatibles ? OUI
+- Si NON → Arrêtez ici et donnez Score ATS = 0/100
+
+**2. Analyse détaillée :**
+
+**Résumé du CV**
+Achraf Melfout est un Ingénieur en Systèmes d'Information (Bac+5), également titulaire d'un DUT en Administration Systèmes & Réseaux. Il se positionne comme un profil junior passionné par le développement web, les systèmes et le DevOps. Son parcours est jalonné de stages pertinents en développement web, notamment avec les technologies Laravel et MySQL, ainsi que la participation à la conception de plateformes et projets informatiques. Il démontre une connaissance de langages et outils clés comme Java, PHP, Laravel, HTML, CSS, JavaScript, React, MySQL, Docker et Git.
+
+**Score ATS: 80/100**
+
+**Points forts**
+*   **Formation supérieure pertinente :** Ingénieur en Systèmes d'Information (Bac+5), parfaitement adapté à un poste en informatique.
+*   **Expérience de développement web concrète :** Plusieurs stages et un Projet Fin d'Études centrés sur le développement web (Laravel, MySQL), ce qui est très pertinent pour un poste junior.
+*   **Forte maîtrise de Laravel/PHP :** Le candidat a utilisé Laravel dans des stages significatifs, ce qui correspond à une exigence clé de l'offre.
+*   **Connaissances Full Stack :** Compétences solides en HTML, CSS, JavaScript pour le front-end et MySQL pour les bases de données, en plus des compétences backend (PHP, Java).
+*   **Maîtrise des outils de développement :** Connaissances de Git et Docker, des outils essentiels dans un environnement de développement moderne.
+*   **Compétence en Java :** Bien que Spring Boot soit absent, la compétence en Java est présente, ce qui est une base solide.
+*   **Profil motivé et polyvalent :** Le profil exprime une passion pour le développement web et une curiosité pour les systèmes et le DevOps, ce qui est un atout.
+
+**Points faibles**
+*   **Absence de Spring Boot :** La compétence en Spring Boot, explicitement mentionnée dans l'offre comme une exigence clé pour la partie Java, n'est pas présente dans le CV.
+*   **Manque de PostgreSQL et Bootstrap :** L'offre mentionne ces technologies, mais le candidat n'indique pas de connaissance ou d'expérience explicite avec elles.
+*   **Expérience professionnelle directe limitée :** Le profil est composé principalement de stages et projets académiques, ce qui est typique pour un junior mais peut nécessiter un accompagnement initial plus marqué.
+
+**Recommandation finale**
+Ce candidat est **hautement recommandable pour un entretien** pour le poste de Développeur Web Full Stack Junior. Malgré quelques lacunes sur des technologies spécifiques (Spring Boot, Bootstrap, PostgreSQL), son profil global est très solide, avec une formation pertinente, une expérience pratique significative en développement web (notamment avec Laravel et MySQL), et une motivation claire. Les points faibles identifiés sont souvent des compétences qui peuvent être acquises rapidement par un profil junior motivé ayant déjà une bonne base technique. Il est un excellent match pour la partie Laravel/PHP de l'offre.

@@ -1,0 +1,47 @@
+Candidature #42
+Candidat: ahmad123
+Poste: Développeur Web Full Stack Junior - TechSolutions Maroc
+Date: 2026-06-01 16:23:02.157231
+Score ATS: 83/100
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+- Domaine métier du CV : IT - Développement Web Full Stack / Systèmes
+- Domaine métier de l'offre : IT - Développement Web Full Stack
+- Sont-ils compatibles ? OUI
+- Si NON → Arrêtez ici et donnez Score ATS = 0/100
+
+**2. Analyse détaillée :**
+
+*   **Résumé du CV**
+    Achraf Melfout est un jeune diplômé (Bac+5) en Ingénierie des Systèmes d'Information, ayant également un DUT en Administration Systèmes & Réseaux. Il se positionne comme passionné par le développement web, les systèmes et le DevOps, recherchant activement une opportunité dans le domaine informatique pour appliquer ses compétences techniques. Son parcours académique est complété par plusieurs stages et projets personnels significatifs dans le développement web et la supervision IT.
+
+*   **Score ATS : 83/100**
+    *   **Formation (10%)**: Bac+5 Ingénierie des Systèmes d'Information. Compatible avec "Bac+2 à Bac+5 en informatique". (10/10)
+    *   **Java (10%)**: Mentionné dans les compétences, utilisé dans un stage ("Laravel PHP Java React") et un projet ("Jeu Quiz JavaFX"). Forte présence. (10/10)
+    *   **Spring Boot (10%)**: Non mentionné explicitement dans le CV. (0/10)
+    *   **PHP Laravel (10%)**: Mentionné dans les compétences et utilisé dans deux stages distincts. Très fort. (10/10)
+    *   **HTML, CSS, JavaScript (10%)**: Mentionnés dans les compétences ("HTML/CSS", "JavaScript"). (10/10)
+    *   **Bootstrap (5%)**: Non mentionné explicitement. (0/5)
+    *   **MySQL/PostgreSQL (10%)**: MySQL mentionné dans les compétences et utilisé dans un stage. (10/10)
+    *   **Git (5%)**: Mentionné dans les compétences. (5/5)
+    *   **Docker (5%)**: Mentionné dans les compétences. (5/5)
+    *   **Capacité de travail en équipe (5%)**: Implicite à travers les stages et projets. (5/5)
+    *   **Expérience / Projets (20%)**: Plusieurs stages et projets concrets en développement web (Laravel, React, applications de gestion) démontrant une capacité Full Stack et une réelle initiative. Le PFE est également très pertinent. (18/20)
+
+*   **Points forts**
+    *   **Formation et diplômes très pertinents :** Bac+5 Ingénierie des Systèmes d'Information et DUT Administration Systèmes & Réseaux, parfaitement alignés avec les exigences.
+    *   **Expérience significative avec Laravel :** Utilisé dans plusieurs stages, ce qui est une compétence clé de l'offre.
+    *   **Maîtrise des fondamentaux du développement web :** HTML, CSS, JavaScript sont bien présents, tout comme MySQL pour les bases de données.
+    *   **Connaissances en Java :** Bien que Spring Boot manque, la base Java est là, ce qui facilite l'apprentissage de Spring Boot.
+    *   **Compétences DevOps et Systèmes :** La mention de Docker, Git, Linux, Grafana et Prometheus, ainsi que l'intérêt pour le DevOps, sont un atout pour un rôle Full Stack.
+    *   **Projets personnels solides :** Démontre une forte initiative, une capacité à concevoir et développer des applications complètes, et une passion pour le développement.
+
+*   **Points faibles**
+    *   **Absence de Spring Boot :** La compétence clé "Spring Boot" n'est pas explicitement mentionnée, ce qui pourrait nécessiter une formation additionnelle rapide.
+    *   **Absence de Bootstrap :** Non mentionné, mais souvent inclus dans la maîtrise des technologies front-end.
+    *   **Expérience professionnelle courte :** Le candidat a effectué des stages et un PFE, mais n'a pas encore d'expérience salariée à temps plein. Cela est toutefois cohérent avec un poste "Junior".
+
+*   **Recommandation finale**
+    **Recommandation: RECRUTER**
+    Achraf Melfout est un excellent candidat pour le poste de Développeur Web Full Stack Junior. Malgré l'absence explicite de Spring Boot, sa formation solide, sa maîtrise avérée de Laravel, Java et d'autres technologies web essentielles, combinée à son initiative démontrée par de nombreux projets pertinents, en font un profil très prometteur. Son intérêt pour le DevOps et les systèmes est également un atout. Sa capacité à apprendre de nouvelles technologies sera probablement rapide.

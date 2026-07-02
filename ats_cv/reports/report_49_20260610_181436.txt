@@ -1,0 +1,18 @@
+Candidature #49
+Candidat: ahmad123
+Poste: Concours Économiste - marsa maroc
+Date: 2026-06-10 18:14:36.882509
+Score ATS: 0/100
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+- Domaine métier du CV : Informatique / Ingénierie des Systèmes d'Information
+- Domaine métier de l'offre : Économie / Analyse Économique
+- Sont-ils compatibles ? NON
+- Si NON → Arrêtez ici et donnez Score ATS = 0/100
+
+**3. Si NON compatible, répondez :**
+❌ INCOMPATIBILITÉ DE DOMAINE : Ce CV est dans le domaine de l'Ingénierie des Systèmes d'Information et du développement logiciel, alors que l'offre est dans le domaine de l'Économie et de l'analyse économique. Les compétences et l'orientation professionnelles du candidat ne correspondent pas aux exigences du poste d'économiste.
+
+Score ATS: 0/100
+Recommandation: NE PAS RECRUTER

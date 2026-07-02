@@ -1,0 +1,84 @@
+HARRARE ZOUHAIR
+
+Développeur Logiciel – Web, IA
+
+Profil
+Développeur Full Stack (Java, React, Python), je cherche une opportunité de travail pour participer à des projets intéressants. Je suis motivé, curieux et prêt à apprendre. Je souhaite mettre mes compétences au service de votre équipe et évoluer professionnellement.
+
+FORMATION
+
+Cycle d'ingénieur 3éme année en développement logiciel et technologies d'information
+
+De 2025 à ce jour
+
+Institut Supérieur du Génie Appliqué, Casablanca
+
+DEUST & Licence en Sciences et Techniques en Génie Informatique
+
+De 2020 à 2021
+
+Faculté des Sciences et Techniques, SETTAT
+
+Baccalauréat Sciences Physiques
+
+De 2025 à ce jour
+
+Groupe Scolaire Boustane Al Malaika, Casablanca
+
+Contact
+TÉLÉPHONE :
+
++212635994064
+
+LINKEDIN :
+
+https://www.linkedin.com/in/harrare-zouhair-a01452290/
+
+E-MAIL :
+
+Zouahirharrare63@gmail.com
+
+LANGUES
+
+Français : B2
+
+Anglais : A2
+
+EXPÉRIENCE PROFESSIONNELLE
+Stage PFE, Développeur Full Stack (MARSA MAROC)
+
+2026 - à présent
+
+Création d'une application web de questionnaires post-formation.
+Analyse des réponses avec Python (IA).
+Génération de statistiques et aide à la prise de décision.
+Stage, Développeur Full Stack & IA (ZIRYABTech)
+Deux mois
+
+Conception et développement d'une plateforme E-Learning intelligente avec Spring Boot (Back-End) et React.js (Front-End).
+Création d'un chabot d'assistance.
+Mise en place d'un tableau de bord avec suivi de performance, statistiques d'apprentissage, et analyse des utilisateurs.
+Stage PFE, Développeur Full Stack (MARSA MAROC)
+
+Deux mois
+
+Développement et mise en place d'un système de gestion des parcs informatiques pour optimiser le suivi des équipements.
+Technologies utilisées : Laravel, MySQL
+COMPÉTENCES
+Langages de programmation : Java (architecture client/serveur, JDBC), Python (Machine Learning), PHP.
+Framework & technologies : Spring Boot, Laravel, React.js.
+
+Développement Web : API REST, applications web dynamiques.
+
+Bases de données : MySQL, PostgreSQL.
+
+Modélisation : UML, Merise.
+
+Compétences DevOps : Git, GitHub, notions en Docker et CI/CD
+
+PROJET ACADÉmiques
+Jeu question/réponse (JEE)
+Système intelligent de gestion de stock et'aide à la décision (1 ère place dans une compétition) (Spring Boot & React.Js & Python)
+Gestion de réservation dans une Restaurant (Java & Java Swing) Assurance qualité
+Correction des exams avec ai (Python)
+Système de recommandation des produits avec ai (microservices & Python))

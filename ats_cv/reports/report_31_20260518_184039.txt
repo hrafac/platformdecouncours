@@ -1,0 +1,35 @@
+Candidature #31
+Candidat: zouhair
+Poste: Offre d’emploi – Développeur Web - Tech Corp
+Date: 2026-05-18 18:40:39.739162
+Score ATS: 0/100
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+- Domaine métier du CV : Développement Informatique (spécialisation Web, DevOps, IA)
+- Domaine métier de l'offre : Développement Web / Informatique
+- Sont-ils compatibles ? OUI
+
+**2. Analyse détaillée**
+
+*   **Résumé du CV**
+    Achraf Melfout est un étudiant en Bac+5 Ingénierie Systèmes d'Information, passionné par le développement informatique, le DevOps et l'Intelligence Artificielle. Il recherche un stage de fin d'études pour appliquer ses compétences. Son profil met en avant une solide base technique en langages (Java, JavaScript, PHP), frameworks web (Spring Boot, React) et bases de données (MySQL). Il a participé à plusieurs projets de développement d'applications web et d'administration système, démontrant une capacité à travailler en équipe et une forte curiosité technologique.
+
+*   **Score ATS: 70/100**
+
+*   **Points forts**
+    *   **Formation parfaitement alignée :** Le Bac+5 en Ingénierie Systèmes d'Information correspond directement aux exigences de l'offre (Systèmes d’information).
+    *   **Compétences techniques clés présentes :** Excellente correspondance avec Java/Spring Boot, React, JavaScript, PHP et MySQL, qui sont des technologies centrales de l'offre.
+    *   **Expériences et projets pertinents :** Le stage de développeur avec Spring Boot et React, ainsi que plusieurs projets d'applications web (PHP, Java) démontrent une expérience concrète et alignée avec les missions.
+    *   **Qualités personnelles recherchées :** Les mentions d'esprit d'analyse, résolution de problèmes et travail en équipe répondent aux attentes.
+    *   **Proactivité :** L'intérêt pour la veille technologique, l'Open Source et l'IA montre une bonne capacité d'apprentissage rapide et une curiosité.
+
+*   **Points faibles**
+    *   **Type de contrat non conforme :** Le point le plus critique est que le candidat recherche un "stage de fin d'études" alors que l'offre est pour un poste "FULL_TIME". C'est un désalignement fondamental qui serait éliminatoire pour un ATS.
+    *   **Technologies manquantes (explicitement) :** Bien que le candidat soit un développeur web, des mots-clés comme "Git", "GitHub", "API REST" et "Laravel" ne sont pas explicitement listés dans sa section "Compétences Tech.", ce qui est un frein pour la détection ATS, même si leur utilisation est implicite. PostgreSQL est également absent.
+    *   **Expérience professionnelle limitée :** Les stages de courte durée (2 mois) combinés à la recherche d'un stage de fin d'études indiquent un profil junior pour un poste à temps plein.
+    *   **Erreur typographique :** La date "2074-2025" pour un stage est une coquille qui peut soulever des questions.
+
+*   **Recommandation finale**
+    Bien que le profil d'Achraf Melfout présente une forte adéquation technique et formative avec l'offre de Développeur Web, la non-concordance sur le type de contrat (stage versus poste à temps plein) est un obstacle majeur pour un ATS. Pour cette offre spécifique de poste "FULL_TIME", la candidature n'est pas adaptée.
+    **Recommandation: NE PAS RECRUTER**

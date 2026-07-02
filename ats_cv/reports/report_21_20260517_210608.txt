@@ -1,0 +1,50 @@
+Candidature #21
+Candidat: Jean1 Dupont
+Poste: Offre d’emploi – Développeur Web - Tech Corp
+Date: 2026-05-17 21:06:08.417095
+Score ATS: 90/100
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+- Domaine métier du CV : Développement Web / Informatique
+- Domaine métier de l'offre : Développement Web / Informatique
+- Sont-ils compatibles ? OUI
+
+**2. Analyse détaillée**
+
+*   **Résumé du CV**: Le candidat se présente comme un Ingénieur en Systèmes d'Information, passionné par le développement web, les systèmes et le DevOps. Il recherche une opportunité dans le domaine informatique pour appliquer ses compétences. Ce résumé est très pertinent car il met en avant sa passion pour le développement web, ce qui est directement aligné avec l'offre.
+
+*   **Score ATS: 90/100**
+    *   **Formation (15/15):** La formation Bac+5 en Ingénierie des Systèmes d'Information correspond parfaitement aux exigences de l'offre (Bac+2 à Bac+5 en Développement informatique, Génie logiciel, Systèmes d’information).
+    *   **Compétences techniques (35/40):**
+        *   HTML5, CSS3, JavaScript: Maîtrise évidente et démontrée (5/5).
+        *   PHP / Laravel: Très bonne maîtrise, utilisé en stage et listé (5/5).
+        *   Java / Spring Boot: Java est listé et utilisé dans un projet. Spring Boot n'est pas explicitement mentionné, mais la base Java est présente (3/5).
+        *   MySQL / PostgreSQL: MySQL est listé et utilisé en stage (5/5).
+        *   Git et gestion de versions: Maîtrise démontrée (5/5).
+        *   Frameworks web (React): React est listé dans les compétences (5/5).
+        *   Développement d’API REST: Mentionné dans les compétences (5/5).
+        *   Autres (Docker, Linux, Grafana, Prometheus, Ansible, Python, ML): Compétences additionnelles très valorisantes bien que non directement requises par l'offre de développeur web pur.
+    *   **Expérience professionnelle (25/30):**
+        *   Stage Développement Web (RMA Assurance): Très pertinent, utilisation de Laravel et MySQL (10/10).
+        *   Stage E-learning (ZiryabTec): Très pertinent, développement d'une plateforme (10/10).
+        *   PFE (Marsa Maroc): Conception d'une plateforme, très pertinent (5/10).
+        *   Stage Supervision IT (Marsa Maroc): Moins directement lié au développement web, mais témoigne de compétences techniques générales en IT (0/10).
+    *   **Projets personnels (10/10):** Les nombreux projets (Gestion Cabinet Médical, Avocat, Stock & E-commerce) sont des applications web et renforcent l'expérience pratique du candidat sur des problématiques réelles.
+    *   **Qualités recherchées (5/5):** La diversité des expériences et projets, ainsi que la polyvalence technique, suggèrent une bonne capacité d'analyse, d'autonomie et d'apprentissage rapide, et un esprit d'équipe évident via les stages.
+
+*   **Points forts**:
+    *   **Formation solide et alignée** avec le profil recherché (Bac+5 en Ingénierie des Systèmes d'Information).
+    *   **Expérience significative en développement web** acquise lors de plusieurs stages et projets personnels, notamment avec Laravel et MySQL.
+    *   **Maîtrise des technologies clés de l'offre**: HTML, CSS, JavaScript, PHP, Laravel, React, MySQL, Git, API REST.
+    *   **Portefeuille de projets personnels robustes** démontrant une capacité à concevoir et développer des applications web complètes.
+    *   **Polyvalence technique** avec des compétences annexes en DevOps (Docker, Linux, Grafana) et en Machine Learning (Python, Scikit-learn), ce qui est un atout précieux.
+    *   **Motivation et passion pour le développement web** clairement exprimées.
+
+*   **Points faibles**:
+    *   L'expérience explicite avec **Spring Boot** n'est pas mentionnée, bien que le candidat maîtrise Java.
+    *   Le stage en "Supervision IT" est moins pertinent pour un poste de développeur web pur, même s'il apporte des compétences système générales.
+
+*   **Recommandation finale**:
+    Ce candidat présente un profil très solide et hautement pertinent pour le poste de Développeur Web. Sa formation, ses expériences de stages en développement web et ses nombreux projets personnels attestent d'une excellente maîtrise des technologies demandées et d'une réelle passion pour le domaine. Les points faibles sont mineurs et peuvent être facilement compensés par sa capacité d'apprentissage rapide et sa polyvalence technique.
+    **Recommandation: RECRUTER**

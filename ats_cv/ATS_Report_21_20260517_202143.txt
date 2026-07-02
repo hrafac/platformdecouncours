@@ -1,0 +1,59 @@
+Candidature #21
+Candidat: Jean1 Dupont
+Poste: Offre d’emploi – Développeur Web - Tech Corp
+Date: 2026-05-17 20:21:43.537443
+==================================================
+
+**1. DIAGNOSTIC RAPIDE**
+- Domaine métier du CV : Développement Web (avec des compétences en Systèmes d'Information et DevOps)
+- Domaine métier de l'offre : Développement Web
+- Sont-ils compatibles ? OUI
+
+**2. Analyse détaillée**
+
+**Résumé du CV**
+Achraf est un Ingénieur Bac+5 en Systèmes d'Information, démontrant un vif intérêt et des compétences pratiques en développement web, avec une ouverture vers les systèmes et le DevOps. Son parcours académique combine l'ingénierie des systèmes d'information et l'administration systèmes & réseaux. Ses expériences incluent un stage en supervision IT et deux stages en développement web, ainsi qu'un PFE axé sur le développement d'une plateforme. Il maîtrise un éventail de technologies pertinentes pour le développement web, le DevOps et même la science des données, et a réalisé plusieurs projets d'applications de gestion et e-commerce.
+
+**Score ATS (/100)** : 85/100
+
+*   **Domaine et Formation (20/20)**: Le CV correspond parfaitement à la formation "Ingénierie des Systèmes d'Information" mentionnée dans l'offre comme compatible pour un Développeur Web. Le profil met en avant la passion pour le développement web.
+*   **Technologies Utilisées (40/40)**:
+    *   HTML, CSS, JavaScript: Présents (HTML/CSS, Javascript).
+    *   PHP / Laravel: Présents (Laravel, PHP).
+    *   Java / Spring Boot: Java est présent. Bien que Spring Boot ne soit pas explicitement mentionné, la maîtrise de Java est un excellent point de départ.
+    *   MySQL / PostgreSQL: MySQL est présent. PostgreSQL n'est pas mentionné.
+    *   Git & GitHub: Présents (Git, profil GitHub).
+    *   API REST: Impliqué par l'usage de Laravel et React, bien que non explicitement listé comme une compétence autonome.
+    *   Le CV mentionne toutes les technologies clés requises, avec la majorité des frameworks/langages spécifiés.
+*   **Missions et Expériences (20/25)**:
+    *   "Développer des applications web dynamiques": Directement couvert par les stages "Développement Web" et "E-learning", ainsi que le PFE et les projets.
+    *   "Concevoir des interfaces utilisateur responsives": Impliqué par l'utilisation de HTML/CSS/React.
+    *   "Créer et gérer des bases de données": Couvert par l'utilisation de MySQL dans plusieurs projets.
+    *   "Corriger les bugs et améliorer les performances": Mission générale de développement, non spécifiquement détaillée mais attendue.
+    *   "Participer aux tests et au déploiement des applications": Non explicitement mentionné.
+    *   "Collaborer avec l’équipe de développement et les designers": Une des qualités recherchées.
+    *   La majorité des expériences sont pertinentes, à l'exception d'un stage en supervision IT.
+*   **Qualités Recherchées (5/15)**:
+    *   Esprit d’analyse et de résolution de problèmes: Implicite par la nature des projets d'ingénierie.
+    *   Travail en équipe: Non spécifiquement prouvé par des exemples concrets dans les expériences, mais mentionné comme qualité.
+    *   Autonomie et organisation: Implicite par la gestion de projets personnels.
+    *   Capacité d’apprentissage rapide: Non explicitement démontrée.
+
+**Points forts**
+*   **Formation Ciblée et Compatible**: Bac+5 en Ingénierie des Systèmes d'Information, directement cité comme formation acceptable dans l'offre.
+*   **Expérience Pratique Solide en Développement Web**: Plusieurs stages et un PFE entièrement dédiés au développement d'applications web avec des technologies clés (Laravel, MySQL, React).
+*   **Maîtrise des Technologies Clés**: Excellente correspondance avec les technologies demandées (HTML, CSS, JavaScript, PHP, Laravel, Java, MySQL, Git, React).
+*   **Projets Personnels Pertinents**: Les projets de gestion de cabinets et d'e-commerce démontrent une capacité à concevoir et développer des applications web complètes et fonctionnelles.
+*   **Polyvalence Technique**: Des compétences supplémentaires en DevOps (Docker, Linux, Grafana) et Data Science (Python, Scikit-learn, TensorFlow) qui peuvent être un atout précieux pour une entreprise technologique.
+*   **Motivation Claire**: Le profil mentionne une passion explicite pour le développement web.
+
+**Points faibles**
+*   **Expérience Non Directement Liée**: Un stage en "Supervision IT" est moins pertinent pour un poste de Développeur Web pur, même si les compétences en systèmes sont un plus.
+*   **Technologies Spécifiques Manquantes**: L'absence de mention explicite de Spring Boot (même si Java est présent) et PostgreSQL pourrait être un léger manque par rapport aux technologies citées dans l'offre.
+*   **Qualités Humaines Peu Détaillées**: Les qualités recherchées (autonomie, esprit d'analyse, capacité d'apprentissage rapide) ne sont pas explicitement étayées par des exemples concrets ou des réalisations dans le CV.
+*   **API REST Non Explicite**: La compétence "Développement d’API REST" n'est pas explicitement listée, bien qu'implicite avec les frameworks maîtrisés.
+
+**Recommandation finale**
+**RECRUTER**
+
+Ce candidat présente un profil très solide et parfaitement aligné avec l'offre. Sa formation, ses expériences concrètes en développement web et sa maîtrise des technologies clés en font un excellent match. Les quelques points faibles sont mineurs et largement compensés par ses atouts et sa polyvalence technique. Il a le potentiel pour devenir un membre précieux de l'équipe de développement web.
